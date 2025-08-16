@@ -24,7 +24,7 @@ const Hero: React.FC = () => {
                 Spare Parts
               </h1>
               <p className="text-xl text-gray-300 leading-relaxed">
-                Your trusted partner for high-quality spare parts. We specialize in lights & electricals, 
+                Your trusted partner for high-quality spare parts. We specialize in lights & electricals,
                 hydraulic seal kits, and gear parts for heavy machinery.
               </p>
             </div>
@@ -60,7 +60,8 @@ const Hero: React.FC = () => {
           <div className="relative">
             <div className="bg-gradient-to-br from-orange-500/20 to-orange-600/20 rounded-3xl p-8 backdrop-blur-sm border border-orange-500/20">
               <img
-                src="https://images.pexels.com/photos/162568/backhoe-machine-excavator-digging-162568.jpeg?auto=compress&cs=tinysrgb&w=800"
+                decoding="async"
+                 src="https://raw.githubusercontent.com/Sahil-Aggarwal-Dev/asus-assests/main/jcb-spare-parts-distributor.webp"
                 alt="Backhoe Loader"
                 className="w-full h-64 lg:h-80 object-cover rounded-2xl"
               />

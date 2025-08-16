@@ -43,8 +43,16 @@ const Header: React.FC = () => {
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
           <Link to="/" className="flex items-center">
-            <div className="bg-slate-900 text-white px-4 py-2 rounded-lg font-bold text-xl">
+            {/* <div className="bg-slate-900 text-white px-4 py-2 rounded-lg font-bold text-xl">
               ASUS
+            </div> */}
+            <div className="Logo">
+              <img
+                decoding="async"
+                src="https://raw.githubusercontent.com/Sahil-Aggarwal-Dev/asus-assests/main/Asus_logo_1.png"
+                alt="Backhoe Loader"
+                className="h-16 w-auto mx-auto object-contain"
+              />
             </div>
             <div className="ml-3">
               <div className="font-bold text-slate-900 text-lg">SPARE PARTS</div>

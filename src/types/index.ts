@@ -11,8 +11,8 @@ export interface Product {
   detailedDescription: string;
   availability: 'In Stock' | 'Low Stock' | 'Out of Stock';
   specifications: Record<string, string>;
-  compatibility: string[];
-  warranty: string;
+  compatibility?: string[];
+  warranty?: string;
   featured: boolean;
   tags: string[];
 }

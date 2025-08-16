@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, ShoppingCart, Heart, Share2, Check, Star, Truck, Shield, Phone } from 'lucide-react';
+import { ArrowLeft, ShoppingCart, Heart, Share2, Check, Star, Truck, Shield, Phone, FileText } from 'lucide-react';
 import { products } from '../data/products';
 
 const ProductDetailPage: React.FC = () => {
@@ -77,9 +77,8 @@ const ProductDetailPage: React.FC = () => {
                   <button
                     key={index}
                     onClick={() => setSelectedImage(index)}
-                    className={`aspect-square bg-gray-100 rounded-lg overflow-hidden border-2 ${
-                      selectedImage === index ? 'border-orange-600' : 'border-transparent'
-                    }`}
+                    className={`aspect-square bg-gray-100 rounded-lg overflow-hidden border-2 ${selectedImage === index ? 'border-orange-600' : 'border-transparent'
+                      }`}
                   >
                     <img src={image} alt={`${product.name} ${index + 1}`} className="w-full h-full object-cover" />
                   </button>
@@ -106,27 +105,36 @@ const ProductDetailPage: React.FC = () => {
 
             {/* Price and Availability */}
             <div className="border-t border-b border-gray-200 py-6">
-              <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center space-x-4">
-                  <span className="text-3xl font-bold text-gray-900">${product.price}</span>
-                  {product.originalPrice && (
-                    <span className="text-xl text-gray-500 line-through">${product.originalPrice}</span>
-                  )}
-                </div>
-                <div className={`font-semibold ${getAvailabilityColor(product.availability)}`}>
-                  {product.availability}
+              <div className="border-t border-b border-gray-200 py-6">
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center space-x-4">
+                    <span className="text-3xl font-bold text-gray-900">
+                      ₹{product.price}
+                    </span>
+                    {product.originalPrice && (
+                      <span className="text-xl text-gray-500 line-through">
+                        ₹{product.originalPrice}
+                      </span>
+                    )}
+                  </div>
+                  <div className={`font-semibold ${getAvailabilityColor(product.availability)}`}>
+                    {product.availability}
+                  </div>
                 </div>
               </div>
-              
+
               <div className="flex items-center space-x-4 text-sm text-gray-600 mb-6">
-                <div className="flex items-center">
+                {/* <div className="flex items-center">
                   <Truck size={16} className="mr-1" />
                   Free shipping on orders over $200
-                </div>
-                <div className="flex items-center">
-                  <Shield size={16} className="mr-1" />
-                  {product.warranty} warranty
-                </div>
+                </div> */}
+
+                {product?.warranty && (
+                  <div className="flex items-center">
+                    <Shield size={16} className="mr-1" />
+                    {product.warranty} warranty
+                  </div>
+                )}
               </div>
 
               <div className="flex space-x-4">
@@ -134,20 +142,26 @@ const ProductDetailPage: React.FC = () => {
                   onClick={() => setShowInquiryForm(true)}
                   className="flex-1 bg-orange-600 hover:bg-orange-700 text-white px-6 py-3 rounded-lg font-semibold flex items-center justify-center space-x-2 transition-colors"
                 >
-                  <ShoppingCart size={20} />
+                  <FileText size={20} />
                   <span>Request Quote</span>
                 </button>
+
                 <button
-                  onClick={() => setIsFavorite(!isFavorite)}
-                  className={`p-3 rounded-lg border-2 transition-colors ${
-                    isFavorite 
-                      ? 'border-red-500 text-red-500 bg-red-50' 
-                      : 'border-gray-300 text-gray-600 hover:border-gray-400'
-                  }`}
+                  onClick={() => {
+                    if (navigator.share) {
+                      navigator.share({
+                        title: "Asus Genuine Spare Parts",
+                        text: "Check out this product!",
+                        url: window.location.href,
+                      });
+                    } else {
+                      // fallback for browsers without Web Share API
+                      navigator.clipboard.writeText(window.location.href);
+                      alert("Link copied to clipboard!");
+                    }
+                  }}
+                  className="p-3 rounded-lg border-2 border-gray-300 text-gray-600 hover:border-gray-400 transition-colors"
                 >
-                  <Heart size={20} className={isFavorite ? 'fill-current' : ''} />
-                </button>
-                <button className="p-3 rounded-lg border-2 border-gray-300 text-gray-600 hover:border-gray-400 transition-colors">
                   <Share2 size={20} />
                 </button>
               </div>
@@ -168,14 +182,21 @@ const ProductDetailPage: React.FC = () => {
 
             {/* Compatibility */}
             <div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Compatibility</h3>
-              <div className="flex flex-wrap gap-2">
-                {product.compatibility.map((model, index) => (
-                  <span key={index} className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">
-                    {model}
-                  </span>
-                ))}
-              </div>
+              {product?.compatibility && product.compatibility.length > 0 && (
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Compatibility</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {product.compatibility.map((model, index) => (
+                      <span
+                        key={index}
+                        className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm"
+                      >
+                        {model}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>

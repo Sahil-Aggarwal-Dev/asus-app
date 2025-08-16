@@ -3,9 +3,9 @@ import { Shield, Award, Users, Clock, CheckCircle, Star } from 'lucide-react';
 
 const About: React.FC = () => {
   const stats = [
-    { icon: <Users size={24} />, number: '500+', label: 'Happy Customers' },
-    { icon: <Award size={24} />, number: '15+', label: 'Years Experience' },
-    { icon: <CheckCircle size={24} />, number: '1000+', label: 'Parts Available' },
+    { icon: <Users size={24} />, number: '100+', label: 'Happy Customers' },
+    { icon: <Award size={24} />, number: '1+', label: 'Years Experience' },
+    { icon: <CheckCircle size={24} />, number: '500+', label: 'Parts Available' },
     { icon: <Clock size={24} />, number: '24/7', label: 'Support Available' }
   ];
 
@@ -36,7 +36,7 @@ const About: React.FC = () => {
             About ASUS Spare Parts
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Your reliable partner in heavy machinery maintenance with over 15 years of industry expertise
+            Your reliable partner in heavy machinery maintenance with over 1 years of industry expertise
           </p>
         </div>
 
@@ -98,7 +98,7 @@ const About: React.FC = () => {
               className="w-full h-96 object-cover rounded-2xl shadow-xl"
             />
             <div className="absolute -bottom-6 -left-6 bg-orange-600 text-white p-6 rounded-xl shadow-lg">
-              <div className="text-2xl font-bold">15+</div>
+              <div className="text-2xl font-bold">1+</div>
               <div className="text-sm">Years Serving</div>
               <div className="text-sm">the Industry</div>
             </div>

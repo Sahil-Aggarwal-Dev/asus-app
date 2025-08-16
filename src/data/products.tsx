@@ -4,15 +4,16 @@ export const products: Product[] = [
   // Lights & Electricals
   {
     id: '1',
-    name: 'LED Work Light 24V - Heavy Duty',
-    partNumber: 'ASU-LED-001',
+    name: 'LED Work Light - Heavy Duty',
+    partNumber: 'ASEL-3001',
     category: 'lights-electricals',
     price: 89.99,
     originalPrice: 109.99,
-    image: 'https://images.pexels.com/photos/257970/pexels-photo-257970.jpeg?auto=compress&cs=tinysrgb&w=800',
+    image: 'https://raw.githubusercontent.com/Sahil-Aggarwal-Dev/asus-assests/main/ASEL-3001.png',
     images: [
-      'https://images.pexels.com/photos/257970/pexels-photo-257970.jpeg?auto=compress&cs=tinysrgb&w=800',
-      'https://images.pexels.com/photos/162568/backhoe-machine-excavator-digging-162568.jpeg?auto=compress&cs=tinysrgb&w=800'
+      'https://raw.githubusercontent.com/Sahil-Aggarwal-Dev/asus-assests/main/ASEL-3001.png',
+      'https://raw.githubusercontent.com/Sahil-Aggarwal-Dev/asus-assests/main/ASEL-3001_1.png',
+      'https://raw.githubusercontent.com/Sahil-Aggarwal-Dev/asus-assests/main/ASEL-3001_2.png'
     ],
     description: 'High-intensity LED work light for backhoe loaders with superior brightness',
     detailedDescription: 'Professional-grade LED work light designed specifically for heavy machinery. Features weatherproof construction, shock-resistant housing, and ultra-bright LED technology for maximum visibility in all working conditions.',
@@ -26,8 +27,8 @@ export const products: Product[] = [
       'IP Rating': 'IP67',
       'Operating Temperature': '-40°C to +85°C'
     },
-    compatibility: ['Backhoe Loader 580', 'Backhoe Loader 590', 'Excavator Series'],
-    warranty: '2 Years',
+    // compatibility: ['Backhoe Loader 580', 'Backhoe Loader 590', 'Excavator Series'],
+    // warranty: '2 Years',
     featured: true,
     tags: ['LED', 'Work Light', '24V', 'Heavy Duty', 'Waterproof']
   },
