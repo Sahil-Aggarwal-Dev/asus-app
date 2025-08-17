@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import ProductGrid from '../components/ProductGrid';
 import ProductFilters from '../components/ProductFilters';
@@ -15,6 +15,12 @@ const ProductsPage: React.FC = () => {
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 1000]);
   const [availability, setAvailability] = useState<string[]>([]);
   const [sortBy, setSortBy] = useState<string>('name');
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  // Disable body scroll when mobile drawer is open
+  useEffect(() => {
+    document.body.style.overflow = mobileOpen ? 'hidden' : '';
+  }, [mobileOpen]);
 
   const filteredProducts = useMemo(() => {
     let filtered = products.filter(product => {
@@ -30,19 +36,13 @@ const ProductsPage: React.FC = () => {
       return matchesCategory && matchesSearch && matchesPrice && matchesAvailability;
     });
 
-    // Sort products
     filtered.sort((a, b) => {
       switch (sortBy) {
-        case 'price-low':
-          return a.price - b.price;
-        case 'price-high':
-          return b.price - a.price;
-        case 'name':
-          return a.name.localeCompare(b.name);
-        case 'newest':
-          return b.id.localeCompare(a.id);
-        default:
-          return 0;
+        case 'price-low': return a.price - b.price;
+        case 'price-high': return b.price - a.price;
+        case 'name': return a.name.localeCompare(b.name);
+        case 'newest': return b.id.localeCompare(a.id);
+        default: return 0;
       }
     });
 
@@ -52,28 +52,11 @@ const ProductsPage: React.FC = () => {
   const selectedCategoryData = categories.find(cat => cat.id === selectedCategory);
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <div className="bg-white shadow-sm">
-        <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h1 className="text-4xl font-bold text-slate-900 mb-4">
-              {selectedCategoryData ? selectedCategoryData.name : 'All Products'}
-            </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              {selectedCategoryData
-                ? selectedCategoryData.description
-                : 'Discover our complete range of premium spare parts for heavy machinery'
-              }
-            </p>
-          </div>
-        </div>
-      </div>
+    <div className="min-h-screen bg-gray-50 relative">
+      <div className="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8 py-8 flex gap-4">
 
-      {/* Main Content */}
-      <div className="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8 py-8 flex gap-8">
-        {/* Sidebar / Filters */}
-        <div className="w-64 sticky top-4 h-fit">
+        {/* Desktop Sidebar */}
+        <div className="hidden lg:block w-64 sticky top-20 h-fit">
           <ProductFilters
             categories={categories}
             selectedCategory={selectedCategory}
@@ -89,17 +72,79 @@ const ProductsPage: React.FC = () => {
           />
         </div>
 
-        {/* Products Grid */}
-        <div className="flex-1">
-          <div className="mb-6 flex justify-between items-center">
-            <p className="text-gray-600">
-              Showing {filteredProducts.length} of {products.length} products
-            </p>
+        {/* Mobile Filters + Products */}
+        <div className="flex-1 flex gap-2">
+
+          {/* Mobile Filter Button */}
+          <div className="lg:hidden flex-shrink-0">
+            <button
+              onClick={() => setMobileOpen(true)}
+              className="px-3 py-2 bg-orange-600 text-white rounded-lg shadow-md hover:bg-orange-700 transition"
+            >
+              Filters
+            </button>
           </div>
-          <ProductGrid products={filteredProducts} />
+
+          {/* Products Grid */}
+          {/* <div className="flex-1">
+            <div className="mb-6 flex justify-between items-center w-full">
+              <p className="text-gray-600">
+                Showing {filteredProducts.length} of {products.length} products
+              </p>
+            </div>
+            <ProductGrid products={filteredProducts} />
+          </div> */}
+
+          <div className="flex-1">
+            <div className="mb-6 flex justify-between items-center w-full">
+              <p className="text-gray-600">
+                Showing {filteredProducts.length} of {products.length} products
+              </p>
+            </div>
+
+            {/* Center the product grid */}
+            <div className="flex justify-center">
+              <ProductGrid products={filteredProducts} />
+            </div>
+          </div>
+
         </div>
+
+        {/* Mobile Drawer */}
+        {mobileOpen && (
+          <>
+            <div
+              className="fixed inset-0 bg-black bg-opacity-50 z-40"
+              onClick={() => setMobileOpen(false)}
+            />
+            <div
+              className="fixed left-0 top-16 w-64 bg-white shadow-lg z-50 h-[calc(100%-64px)] transform transition-transform duration-300 ease-in-out"
+            >
+              <div className="flex justify-between items-center p-4 border-b sticky top-0 bg-white z-10">
+                <h2 className="text-lg font-bold">Filters</h2>
+                <button onClick={() => setMobileOpen(false)} className="text-black text-xl">×</button>
+              </div>
+              <div className="p-4 overflow-y-auto max-h-[70vh]">
+                <ProductFilters
+                  categories={categories}
+                  selectedCategory={selectedCategory}
+                  onCategoryChange={setSelectedCategory}
+                  searchQuery={searchQuery}
+                  onSearchChange={setSearchQuery}
+                  priceRange={priceRange}
+                  onPriceRangeChange={setPriceRange}
+                  availability={availability}
+                  onAvailabilityChange={setAvailability}
+                  sortBy={sortBy}
+                  onSortChange={setSortBy}
+                />
+              </div>
+            </div>
+          </>
+        )}
       </div>
     </div>
+
   );
 };
 
