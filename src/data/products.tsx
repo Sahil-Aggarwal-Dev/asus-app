@@ -4,12 +4,11 @@ export const products: Product[] = [
   // Lights & Electricals
   {
     id: '1',
-    name: 'LED Work Light - Heavy Duty',
+    name: 'ASUS LED Work Light - Heavy Duty',
     partNumber: 'ASEL-3001',
     category: 'lights-electricals',
     price: 89.99,
     originalPrice: 109.99,
-    image: 'https://raw.githubusercontent.com/Sahil-Aggarwal-Dev/asus-assests/main/ASEL-3001.png',
     images: [
       'https://raw.githubusercontent.com/Sahil-Aggarwal-Dev/asus-assests/main/ASEL-3001.png',
       'https://raw.githubusercontent.com/Sahil-Aggarwal-Dev/asus-assests/main/ASEL-3001_1.png',
@@ -38,7 +37,6 @@ export const products: Product[] = [
     partNumber: 'ASU-WH-002',
     category: 'lights-electricals',
     price: 159.99,
-    image: 'https://images.pexels.com/photos/162568/backhoe-machine-excavator-digging-162568.jpeg?auto=compress&cs=tinysrgb&w=800',
     images: [
       'https://images.pexels.com/photos/162568/backhoe-machine-excavator-digging-162568.jpeg?auto=compress&cs=tinysrgb&w=800'
     ],
@@ -53,7 +51,7 @@ export const products: Product[] = [
       'Voltage Rating': '600V'
     },
     compatibility: ['All Backhoe Models', 'Excavator Series'],
-    warranty: '1 Year',
+    // warranty: '1 Year',
     featured: false,
     tags: ['Wiring', 'Harness', 'Electrical', 'OEM']
   },
@@ -64,7 +62,6 @@ export const products: Product[] = [
     category: 'lights-electricals',
     price: 299.99,
     originalPrice: 349.99,
-    image: 'https://images.pexels.com/photos/257970/pexels-photo-257970.jpeg?auto=compress&cs=tinysrgb&w=800',
     images: [
       'https://images.pexels.com/photos/257970/pexels-photo-257970.jpeg?auto=compress&cs=tinysrgb&w=800'
     ],
@@ -79,7 +76,7 @@ export const products: Product[] = [
       'Regulator': 'Internal'
     },
     compatibility: ['Backhoe Loader 580', 'Backhoe Loader 590'],
-    warranty: '2 Years',
+    // warranty: '2 Years',
     featured: true,
     tags: ['Alternator', 'Charging', '12V', '24V', 'Heavy Duty']
   },
@@ -91,7 +88,6 @@ export const products: Product[] = [
     partNumber: 'ASU-HSK-001',
     category: 'hydraulic-sealkits',
     price: 79.99,
-    image: 'https://images.pexels.com/photos/159298/gears-cogs-machine-machinery-159298.jpeg?auto=compress&cs=tinysrgb&w=800',
     images: [
       'https://images.pexels.com/photos/159298/gears-cogs-machine-machinery-159298.jpeg?auto=compress&cs=tinysrgb&w=800'
     ],
@@ -106,7 +102,7 @@ export const products: Product[] = [
       'Rod Diameter': '45-70mm'
     },
     compatibility: ['Boom Cylinder', 'Arm Cylinder', 'Bucket Cylinder'],
-    warranty: '1 Year',
+    // warranty: '1 Year',
     featured: true,
     tags: ['Hydraulic', 'Seals', 'Cylinder', 'Complete Kit']
   },
@@ -116,7 +112,6 @@ export const products: Product[] = [
     partNumber: 'ASU-BCS-002',
     category: 'hydraulic-sealkits',
     price: 129.99,
-    image: 'https://images.pexels.com/photos/159298/gears-cogs-machine-machinery-159298.jpeg?auto=compress&cs=tinysrgb&w=800',
     images: [
       'https://images.pexels.com/photos/159298/gears-cogs-machine-machinery-159298.jpeg?auto=compress&cs=tinysrgb&w=800'
     ],
@@ -131,8 +126,8 @@ export const products: Product[] = [
       'Service Life': '2000+ hours'
     },
     compatibility: ['Backhoe Loader 580', 'Backhoe Loader 590'],
-    warranty: '18 Months',
-    featured: false,
+    // warranty: '18 Months',
+    featured: true,
     tags: ['Boom', 'Cylinder', 'Seals', 'Heavy Duty']
   },
   {
@@ -141,7 +136,6 @@ export const products: Product[] = [
     partNumber: 'ASU-HPS-003',
     category: 'hydraulic-sealkits',
     price: 199.99,
-    image: 'https://images.pexels.com/photos/159298/gears-cogs-machine-machinery-159298.jpeg?auto=compress&cs=tinysrgb&w=800',
     images: [
       'https://images.pexels.com/photos/159298/gears-cogs-machine-machinery-159298.jpeg?auto=compress&cs=tinysrgb&w=800'
     ],
@@ -156,7 +150,7 @@ export const products: Product[] = [
       'Flow Rate': '120 L/min'
     },
     compatibility: ['Main Hydraulic Pump', 'Pilot Pump'],
-    warranty: '2 Years',
+    // warranty: '2 Years',
     featured: true,
     tags: ['Pump', 'Seals', 'High Pressure', 'Variable Displacement']
   },
@@ -169,7 +163,6 @@ export const products: Product[] = [
     category: 'gear-parts',
     price: 499.99,
     originalPrice: 599.99,
-    image: 'https://images.pexels.com/photos/159275/macro-gear-gear-wheel-cogs-159275.jpeg?auto=compress&cs=tinysrgb&w=800',
     images: [
       'https://images.pexels.com/photos/159275/macro-gear-gear-wheel-cogs-159275.jpeg?auto=compress&cs=tinysrgb&w=800'
     ],
@@ -184,7 +177,7 @@ export const products: Product[] = [
       'Precision Grade': 'DIN 6'
     },
     compatibility: ['Powershift Transmission', '4WD Models'],
-    warranty: '3 Years',
+    // warranty: '3 Years',
     featured: true,
     tags: ['Transmission', 'Gears', 'Complete Set', 'Hardened Steel']
   },
@@ -194,7 +187,6 @@ export const products: Product[] = [
     partNumber: 'ASU-DG-002',
     category: 'gear-parts',
     price: 349.99,
-    image: 'https://images.pexels.com/photos/159275/macro-gear-gear-wheel-cogs-159275.jpeg?auto=compress&cs=tinysrgb&w=800',
     images: [
       'https://images.pexels.com/photos/159275/macro-gear-gear-wheel-cogs-159275.jpeg?auto=compress&cs=tinysrgb&w=800'
     ],
@@ -209,8 +201,8 @@ export const products: Product[] = [
       'Service Life': '5000+ hours'
     },
     compatibility: ['Rear Axle', 'Front Axle (4WD)'],
-    warranty: '2 Years',
-    featured: false,
+    // warranty: '2 Years',
+    featured: true,
     tags: ['Differential', 'Gears', 'Power Transfer', 'Heavy Duty']
   },
   {
@@ -219,7 +211,6 @@ export const products: Product[] = [
     partNumber: 'ASU-FDG-003',
     category: 'gear-parts',
     price: 289.99,
-    image: 'https://images.pexels.com/photos/159275/macro-gear-gear-wheel-cogs-159275.jpeg?auto=compress&cs=tinysrgb&w=800',
     images: [
       'https://images.pexels.com/photos/159275/macro-gear-gear-wheel-cogs-159275.jpeg?auto=compress&cs=tinysrgb&w=800'
     ],
@@ -234,8 +225,8 @@ export const products: Product[] = [
       'Mounting': 'Flange Mount'
     },
     compatibility: ['Track Drive', 'Wheel Drive'],
-    warranty: '2 Years',
-    featured: false,
+    // warranty: '2 Years',
+    featured: true,
     tags: ['Final Drive', 'Speed Reduction', 'Torque', 'Ground Drive']
   }
 ];

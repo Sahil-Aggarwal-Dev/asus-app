@@ -1,13 +1,23 @@
 import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, ShoppingCart, Heart, Share2, Check, Star, Truck, Shield, Phone, FileText } from 'lucide-react';
+import {
+  ArrowLeft,
+  Eye,
+  Share2,
+  Check,
+  Star,
+  Shield,
+  Phone,
+  FileText
+} from 'lucide-react';
 import { products } from '../data/products';
+import WatermarkedImage from '../components/Watermark';
+import ImageScroller from '../components/ImageScroller';
 
 const ProductDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const product = products.find(p => p.id === id);
   const [selectedImage, setSelectedImage] = useState(0);
-  const [isFavorite, setIsFavorite] = useState(false);
   const [showInquiryForm, setShowInquiryForm] = useState(false);
 
   if (!product) {
@@ -40,6 +50,8 @@ const ProductDetailPage: React.FC = () => {
     .filter(p => p.category === product.category && p.id !== product.id)
     .slice(0, 4);
 
+  const isOnSale = product.originalPrice && product.originalPrice > product.price;
+
   return (
     <div className="min-h-screen bg-white">
       {/* Breadcrumb */}
@@ -58,33 +70,43 @@ const ProductDetailPage: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <Link to="/products" className="inline-flex items-center text-orange-600 hover:text-orange-700 mb-8">
           <ArrowLeft size={20} className="mr-2" />
-          Back to Products
+          Back to All Products
         </Link>
 
         <div className="grid lg:grid-cols-2 gap-12">
-          {/* Product Images */}
-          <div className="space-y-4">
-            <div className="aspect-square bg-gray-100 rounded-2xl overflow-hidden">
-              <img
-                src={product.images[selectedImage]}
-                alt={product.name}
-                className="w-full h-full object-cover"
-              />
-            </div>
+          {/* Product Images with Vertical Thumbnails */}
+          <div className="flex space-x-4">
+            {/* Thumbnails */}
             {product.images.length > 1 && (
-              <div className="grid grid-cols-4 gap-4">
+              <div className="flex flex-col gap-4">
                 {product.images.map((image, index) => (
                   <button
                     key={index}
                     onClick={() => setSelectedImage(index)}
-                    className={`aspect-square bg-gray-100 rounded-lg overflow-hidden border-2 ${selectedImage === index ? 'border-orange-600' : 'border-transparent'
-                      }`}
+                    className={`w-20 h-20 rounded-lg overflow-hidden border-2 ${selectedImage === index ? 'border-orange-600' : 'border-gray-200'}`}
                   >
-                    <img src={image} alt={`${product.name} ${index + 1}`} className="w-full h-full object-cover" />
+                    <WatermarkedImage
+                      src={image}
+                      alt={`${product.name} ${index + 1}`}
+                      className="w-full h-full object-cover"
+                    />
                   </button>
                 ))}
               </div>
             )}
+
+            {/* Main Image */}
+            <div className="flex-1 aspect-square bg-gray-100 rounded-2xl overflow-hidden">
+
+              <ImageScroller
+                images={product.images}
+                partNumber={product.partNumber}
+                isOnSale={!!isOnSale}
+                setTime={1500}
+              />
+
+            </div>
+
           </div>
 
           {/* Product Info */}
@@ -105,30 +127,23 @@ const ProductDetailPage: React.FC = () => {
 
             {/* Price and Availability */}
             <div className="border-t border-b border-gray-200 py-6">
-              <div className="border-t border-b border-gray-200 py-6">
-                <div className="flex items-center justify-between mb-4">
-                  <div className="flex items-center space-x-4">
-                    <span className="text-3xl font-bold text-gray-900">
-                      ₹{product.price}
+              <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center space-x-4">
+                  <span className="text-3xl font-bold text-gray-900">
+                    ₹{product.price}
+                  </span>
+                  {product.originalPrice && (
+                    <span className="text-xl text-gray-500 line-through">
+                      ₹{product.originalPrice}
                     </span>
-                    {product.originalPrice && (
-                      <span className="text-xl text-gray-500 line-through">
-                        ₹{product.originalPrice}
-                      </span>
-                    )}
-                  </div>
-                  <div className={`font-semibold ${getAvailabilityColor(product.availability)}`}>
-                    {product.availability}
-                  </div>
+                  )}
+                </div>
+                <div className={`font-semibold ${getAvailabilityColor(product.availability)}`}>
+                  {product.availability}
                 </div>
               </div>
 
               <div className="flex items-center space-x-4 text-sm text-gray-600 mb-6">
-                {/* <div className="flex items-center">
-                  <Truck size={16} className="mr-1" />
-                  Free shipping on orders over $200
-                </div> */}
-
                 {product?.warranty && (
                   <div className="flex items-center">
                     <Shield size={16} className="mr-1" />
@@ -146,6 +161,14 @@ const ProductDetailPage: React.FC = () => {
                   <span>Request Quote</span>
                 </button>
 
+                {/* Eye button instead of Heart */}
+                <button
+                  onClick={() => alert("Quick preview of product")}
+                  className="p-3 rounded-lg border-2 border-gray-300 text-gray-600 hover:border-gray-400 transition-colors"
+                >
+                  <Eye size={20} />
+                </button>
+
                 <button
                   onClick={() => {
                     if (navigator.share) {
@@ -155,7 +178,6 @@ const ProductDetailPage: React.FC = () => {
                         url: window.location.href,
                       });
                     } else {
-                      // fallback for browsers without Web Share API
                       navigator.clipboard.writeText(window.location.href);
                       alert("Link copied to clipboard!");
                     }
@@ -228,18 +250,20 @@ const ProductDetailPage: React.FC = () => {
                   className="group bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow"
                 >
                   <div className="aspect-square overflow-hidden">
-                    <img
-                      src={relatedProduct.image}
-                      alt={relatedProduct.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    <ImageScroller
+                      images={relatedProduct.images}
+                      partNumber={relatedProduct.partNumber}
+                      isOnSale={!!relatedProduct.originalPrice && relatedProduct.originalPrice > relatedProduct.price}
+                      setTime={1000}
                     />
+
                   </div>
                   <div className="p-4">
                     <h3 className="font-semibold text-gray-900 mb-2 group-hover:text-orange-600 transition-colors">
                       {relatedProduct.name}
                     </h3>
                     <p className="text-gray-600 text-sm mb-2">{relatedProduct.partNumber}</p>
-                    <div className="text-lg font-bold text-gray-900">${relatedProduct.price}</div>
+                    <div className="text-lg font-bold text-gray-900">₹{relatedProduct.price}</div>
                   </div>
                 </Link>
               ))}
@@ -248,7 +272,7 @@ const ProductDetailPage: React.FC = () => {
         )}
       </div>
 
-      {/* Quick Inquiry Modal */}
+      {/* Inquiry Modal */}
       {showInquiryForm && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
           <div className="bg-white rounded-2xl p-8 max-w-md w-full">

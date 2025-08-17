@@ -1,27 +1,26 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Star, ShoppingCart } from 'lucide-react';
+import { Eye, ChevronLeft, ChevronRight } from 'lucide-react';
 import { products } from '../data/products';
+import ImageScroller from './ImageScroller';
 
 const FeaturedProducts: React.FC = () => {
-  const featuredProducts = products.filter(product => product.featured).slice(0, 6);
+  const featuredProducts = products.filter(p => p.featured).slice(0, 12);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
-  const getAvailabilityColor = (availability: string) => {
-    switch (availability) {
-      case 'In Stock':
-        return 'bg-green-100 text-green-800';
-      case 'Low Stock':
-        return 'bg-yellow-100 text-yellow-800';
-      case 'Out of Stock':
-        return 'bg-red-100 text-red-800';
-      default:
-        return 'bg-gray-100 text-gray-800';
+  const scroll = (direction: 'left' | 'right') => {
+    if (scrollRef.current) {
+      const scrollAmount = 300; // adjust based on card width
+      scrollRef.current.scrollBy({
+        left: direction === 'left' ? -scrollAmount : scrollAmount,
+        behavior: 'smooth',
+      });
     }
   };
 
   return (
-    <section className="py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-20 bg-white relative">
+      <div className="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-slate-900 mb-4">Featured Products</h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -29,88 +28,91 @@ const FeaturedProducts: React.FC = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {featuredProducts.map((product) => (
-            <div key={product.id} className="group bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 border border-gray-100">
-              <div className="relative overflow-hidden">
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-300" />
-                <div className="absolute top-3 left-3">
-                  <span className={`px-2 py-1 text-xs font-medium rounded-full ${getAvailabilityColor(product.availability)}`}>
-                    {product.availability}
-                  </span>
-                </div>
-                {product.originalPrice && (
-                  <div className="absolute top-3 right-3 bg-red-500 text-white px-2 py-1 rounded-full text-xs font-bold">
-                    SALE
-                  </div>
-                )}
-                <div className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <Link
-                    to={`/products/${product.id}`}
-                    className="p-2 bg-white rounded-full shadow-md hover:bg-gray-50 transition-colors"
-                  >
-                    <ArrowRight size={18} className="text-gray-600" />
-                  </Link>
-                </div>
-              </div>
-
-              <div className="p-6">
-                <div className="flex items-center mb-2">
-                  <div className="flex items-center">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} size={14} className="text-yellow-400 fill-current" />
-                    ))}
-                  </div>
-                  <span className="ml-2 text-sm text-gray-500">(4.8)</span>
-                </div>
-                
-                <div className="mb-2">
-                  <Link
-                    to={`/products/${product.id}`}
-                    className="font-bold text-lg text-slate-900 group-hover:text-orange-600 transition-colors line-clamp-2"
-                  >
-                    {product.name}
-                  </Link>
-                  <p className="text-sm text-gray-500">Part #: {product.partNumber}</p>
-                </div>
-                
-                <p className="text-gray-600 text-sm mb-4 line-clamp-2">
-                  {product.description}
-                </p>
-
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-2">
-                    <span className="text-2xl font-bold text-slate-900">${product.price}</span>
-                    {product.originalPrice && (
-                      <span className="text-sm text-gray-500 line-through">${product.originalPrice}</span>
-                    )}
-                  </div>
-                  <Link
-                    to={`/products/${product.id}`}
-                    className="bg-orange-600 hover:bg-orange-700 text-white px-4 py-2 rounded-lg flex items-center space-x-2 transition-colors text-sm"
-                  >
-                    <ShoppingCart size={16} />
-                    <span>View</span>
-                  </Link>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <div className="text-center mt-12">
-          <Link
-            to="/products"
-            className="inline-flex items-center px-8 py-4 bg-orange-600 hover:bg-orange-700 text-white font-semibold rounded-lg transition-colors"
+        <div className="relative">
+          {/* Left Arrow */}
+          <button
+            onClick={() => scroll('left')}
+            className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 bg-white p-2 rounded-full shadow hover:bg-gray-100"
           >
-            View All Products
-            <ArrowRight size={20} className="ml-2" />
-          </Link>
+            <ChevronLeft size={24} />
+          </button>
+
+          {/* Scrollable Product Container */}
+          <div
+            ref={scrollRef}
+            className="flex space-x-6 overflow-x-auto scroll-smooth py-4 hide-scrollbar"
+          >
+            {featuredProducts.map(product => {
+              const isOnSale = product.originalPrice && product.originalPrice > product.price;
+
+              return (
+                <div
+                  key={product.id}
+                  className="flex-shrink-0 w-64 bg-white shadow rounded-lg overflow-hidden relative hover:shadow-lg transition-shadow cursor-pointer text-sm"
+                >
+                  <ImageScroller
+                    images={product.images}
+                    partNumber={product.partNumber}
+                    isOnSale={!!isOnSale}
+                    setTime={1000}
+                  />
+
+                  <div className="p-3">
+                    <Link
+                      to={`/products/${product.id}`}
+                      className="text-base font-semibold text-gray-900 hover:text-orange-600"
+                    >
+                      {product.name}
+                    </Link>
+
+                    {product.partNumber && (
+                      <p className="text-xs font-bold text-gray-800 mt-1">
+                        Part No: {product.partNumber}
+                      </p>
+                    )}
+
+                    {product.warranty && (
+                      <p className="mt-1 text-xs text-gray-600">Warranty: {product.warranty}</p>
+                    )}
+
+                    <div className="flex items-center justify-between mt-1">
+                      <div className="flex items-center space-x-2">
+                        <span className="text-gray-900 font-bold text-sm">₹{product.price}</span>
+                        {product.originalPrice && (
+                          <span className="text-gray-500 line-through text-xs">₹{product.originalPrice}</span>
+                        )}
+                      </div>
+                      <span
+                        className={`text-xs font-semibold ${product.availability === 'In Stock'
+                          ? 'text-green-600'
+                          : product.availability === 'Low Stock'
+                            ? 'text-yellow-600'
+                            : 'text-red-600'
+                          }`}
+                      >
+                        {product.availability}
+                      </span>
+                    </div>
+
+                    <Link
+                      to={`/products/${product.id}`}
+                      className="mt-2 inline-flex items-center justify-center w-full bg-orange-600 hover:bg-orange-700 text-white px-4 py-2 rounded-lg font-semibold gap-2 text-sm"
+                    >
+                      <Eye size={20} /> View
+                    </Link>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Right Arrow */}
+          <button
+            onClick={() => scroll('right')}
+            className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 bg-white p-2 rounded-full shadow hover:bg-gray-100"
+          >
+            <ChevronRight size={24} />
+          </button>
         </div>
       </div>
     </section>

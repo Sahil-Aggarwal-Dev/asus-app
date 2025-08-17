@@ -143,7 +143,7 @@ const ProductFilters: React.FC<ProductFiltersProps> = ({
             />
           </div>
           <div className="text-sm text-gray-600">
-            ${priceRange[0]} - ${priceRange[1]}
+            ₹{priceRange[0]} - ₹{priceRange[1]}
           </div>
         </div>
       </div>
