@@ -44,15 +44,17 @@ const ProductGrid: React.FC<ProductGridProps> = ({ products, filters }) => {
         <>
           {/* Overlay */}
           <div
-            className={`fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity duration-300 ${mobileOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
-              } lg:hidden`}
+            className={`fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity duration-300 ${
+              mobileOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
+            } lg:hidden`}
             onClick={() => setMobileOpen(false)}
           />
 
           {/* Drawer */}
           <div
-            className={`fixed top-0 left-0 h-full w-64 bg-white shadow-lg z-50 transform transition-transform duration-300 ease-in-out ${mobileOpen ? 'translate-x-0' : '-translate-x-full'
-              } lg:hidden`}
+            className={`fixed top-0 left-0 h-full w-64 bg-white shadow-lg z-50 transform transition-transform duration-300 ease-in-out ${
+              mobileOpen ? 'translate-x-0' : '-translate-x-full'
+            } lg:hidden`}
           >
             <div className="p-4 flex justify-between items-center border-b">
               <h2 className="text-lg font-bold">Filters</h2>
@@ -70,7 +72,8 @@ const ProductGrid: React.FC<ProductGridProps> = ({ products, filters }) => {
 
       {/* Product Grid */}
       <div className="flex-1">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        {/* ✅ Always at least 2 products on mobile */}
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {currentProducts.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
@@ -90,8 +93,9 @@ const ProductGrid: React.FC<ProductGridProps> = ({ products, filters }) => {
               <button
                 key={i + 1}
                 onClick={() => goToPage(i + 1)}
-                className={`px-3 py-1 rounded ${currentPage === i + 1 ? 'bg-orange-600 text-white' : 'bg-gray-200'
-                  }`}
+                className={`px-3 py-1 rounded ${
+                  currentPage === i + 1 ? 'bg-orange-600 text-white' : 'bg-gray-200'
+                }`}
               >
                 {i + 1}
               </button>
@@ -132,12 +136,16 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
   return (
     <div className="bg-white shadow rounded-lg overflow-hidden relative hover:shadow-lg transition-shadow cursor-pointer text-sm flex flex-col">
-      <ImageScroller
-        images={product.images}
-        partNumber={product.partNumber}
-        isOnSale={!!isOnSale}
-        setTime={1500}
-      />
+      
+      {/* ✅ Ensure full image without extra white space */}
+      <div className="w-full aspect-[4/3] relative">
+        <ImageScroller
+          images={product.images}
+          partNumber={product.partNumber}
+          isOnSale={!!isOnSale}
+          setTime={1500}
+        />
+      </div>
 
       <div className="p-3 flex flex-col flex-1">
         <Link

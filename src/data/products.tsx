@@ -6,7 +6,7 @@ export const products: Product[] = [
     id: '1',
     name: 'ASUS LED Work Light - Heavy Duty',
     partNumber: 'ASEL-3001',
-    category: 'lights-electricals',
+    category: '1',
     price: 89.99,
     originalPrice: 109.99,
     images: [
@@ -35,7 +35,7 @@ export const products: Product[] = [
     id: '2',
     name: 'Complete Wiring Harness Kit',
     partNumber: 'ASU-WH-002',
-    category: 'lights-electricals',
+    category: '1',
     price: 159.99,
     images: [
       'https://images.pexels.com/photos/162568/backhoe-machine-excavator-digging-162568.jpeg?auto=compress&cs=tinysrgb&w=800'
@@ -59,7 +59,7 @@ export const products: Product[] = [
     id: '3',
     name: 'Heavy Duty Alternator 12V/24V',
     partNumber: 'ASU-ALT-003',
-    category: 'lights-electricals',
+    category: '1',
     price: 299.99,
     originalPrice: 349.99,
     images: [
@@ -86,7 +86,7 @@ export const products: Product[] = [
     id: '4',
     name: 'Hydraulic Cylinder Seal Kit - Complete',
     partNumber: 'ASU-HSK-001',
-    category: 'hydraulic-sealkits',
+    category: '2',
     price: 79.99,
     images: [
       'https://images.pexels.com/photos/159298/gears-cogs-machine-machinery-159298.jpeg?auto=compress&cs=tinysrgb&w=800'
@@ -110,7 +110,7 @@ export const products: Product[] = [
     id: '5',
     name: 'Boom Cylinder Seal Set',
     partNumber: 'ASU-BCS-002',
-    category: 'hydraulic-sealkits',
+    category: '2',
     price: 129.99,
     images: [
       'https://images.pexels.com/photos/159298/gears-cogs-machine-machinery-159298.jpeg?auto=compress&cs=tinysrgb&w=800'
@@ -134,7 +134,7 @@ export const products: Product[] = [
     id: '6',
     name: 'Hydraulic Pump Seal Kit',
     partNumber: 'ASU-HPS-003',
-    category: 'hydraulic-sealkits',
+    category: '2',
     price: 199.99,
     images: [
       'https://images.pexels.com/photos/159298/gears-cogs-machine-machinery-159298.jpeg?auto=compress&cs=tinysrgb&w=800'
@@ -160,7 +160,7 @@ export const products: Product[] = [
     id: '7',
     name: 'Transmission Gear Set - Complete',
     partNumber: 'ASU-TGS-001',
-    category: 'gear-parts',
+    category: '3',
     price: 499.99,
     originalPrice: 599.99,
     images: [
@@ -185,7 +185,7 @@ export const products: Product[] = [
     id: '8',
     name: 'Differential Gear Assembly',
     partNumber: 'ASU-DG-002',
-    category: 'gear-parts',
+    category: '3',
     price: 349.99,
     images: [
       'https://images.pexels.com/photos/159275/macro-gear-gear-wheel-cogs-159275.jpeg?auto=compress&cs=tinysrgb&w=800'
@@ -209,7 +209,7 @@ export const products: Product[] = [
     id: '9',
     name: 'Final Drive Gear System',
     partNumber: 'ASU-FDG-003',
-    category: 'gear-parts',
+    category: '3',
     price: 289.99,
     images: [
       'https://images.pexels.com/photos/159275/macro-gear-gear-wheel-cogs-159275.jpeg?auto=compress&cs=tinysrgb&w=800'

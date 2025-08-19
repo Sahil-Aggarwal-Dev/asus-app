@@ -84,7 +84,7 @@ const ImageScroller: React.FC<ImageScrollerProps> = ({ images, partNumber, isOnS
 
                 {/* Part Number - Top Center */}
                 {partNumber && (
-                    <div className="absolute top-2 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white text-sm font-extrabold px-3 py-1 rounded z-20">
+                    <div className="absolute top-2 left-2 bg-gray-900 text-white text-sm font-extrabold px-3 py-1 rounded z-20">
                         {partNumber}
                     </div>
                 )}

@@ -57,10 +57,10 @@ const FeaturedProducts: React.FC = () => {
                     setTime={1000}
                   />
 
-                  <div className="p-3">
+                  <div className="p-3 flex flex-col flex-1">
                     <Link
                       to={`/products/${product.id}`}
-                      className="text-base font-semibold text-gray-900 hover:text-orange-600"
+                      className="text-sm sm:text-base font-semibold text-gray-900 hover:text-orange-600 truncate"
                     >
                       {product.name}
                     </Link>
