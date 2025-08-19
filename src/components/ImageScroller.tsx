@@ -6,7 +6,7 @@ interface ImageScrollerProps {
     images: string[];
     partNumber?: string;
     isOnSale?: boolean;
-    setTime: number
+    setTime: number;
 }
 
 const ImageScroller: React.FC<ImageScrollerProps> = ({ images, partNumber, isOnSale, setTime }) => {
@@ -16,15 +16,20 @@ const ImageScroller: React.FC<ImageScrollerProps> = ({ images, partNumber, isOnS
     const [fade, setFade] = useState(true);
     const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
-    // Auto-scroll images on hover (only if more than 1 image)
+    // Calculate if we should show arrows (more than 1 image)
+    const shouldShowArrows = images.length > 1;
+
+    // Auto-scroll images on hover
     useEffect(() => {
-        if (images.length <= 1) return; // Prevent auto-scroll/fade for single image
+        if (!shouldShowArrows) return; // Prevent auto-scroll/fade for single image
 
         if (isHovered && !isArrowHovered) {
             intervalRef.current = setInterval(() => {
                 setFade(false);
                 setTimeout(() => {
-                    setCurrentImageIndex(prev => (prev === images.length - 1 ? 0 : prev + 1));
+                    setCurrentImageIndex(prev =>
+                        prev === images.length - 1 ? 0 : prev + 1
+                    );
                     setFade(true);
                 }, 300);
             }, setTime);
@@ -33,31 +38,35 @@ const ImageScroller: React.FC<ImageScrollerProps> = ({ images, partNumber, isOnS
         return () => {
             if (intervalRef.current) clearInterval(intervalRef.current);
         };
-    }, [isHovered, isArrowHovered, images.length]);
+    }, [isHovered, isArrowHovered, images.length, setTime, shouldShowArrows]);
 
     const prevImage = (e: React.MouseEvent) => {
         e.stopPropagation();
-        if (images.length <= 1) return; // do nothing if single image
+        if (!shouldShowArrows) return;
         setFade(false);
         setTimeout(() => {
-            setCurrentImageIndex(prev => (prev === 0 ? images.length - 1 : prev - 1));
+            setCurrentImageIndex(prev =>
+                prev === 0 ? images.length - 1 : prev - 1
+            );
             setFade(true);
         }, 300);
     };
 
     const nextImage = (e: React.MouseEvent) => {
         e.stopPropagation();
-        if (images.length <= 1) return; // do nothing if single image
+        if (!shouldShowArrows) return;
         setFade(false);
         setTimeout(() => {
-            setCurrentImageIndex(prev => (prev === images.length - 1 ? 0 : prev + 1));
+            setCurrentImageIndex(prev =>
+                prev === images.length - 1 ? 0 : prev + 1
+            );
             setFade(true);
         }, 300);
     };
 
     const handleMouseLeave = () => {
         setIsHovered(false);
-        if (images.length <= 1) return; // nothing to fade for single image
+        if (!shouldShowArrows) return;
         setFade(false);
         setTimeout(() => {
             setCurrentImageIndex(0); // Reset to first image
@@ -71,18 +80,18 @@ const ImageScroller: React.FC<ImageScrollerProps> = ({ images, partNumber, isOnS
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={handleMouseLeave}
         >
-            {/* Image + badges + arrows wrapper */}
             <div className="relative w-full h-full">
                 {/* Main Image */}
                 <WatermarkedImage
                     key={currentImageIndex}
                     src={images[currentImageIndex]}
                     alt={`Product Image ${currentImageIndex + 1}`}
-                    className={`w-full h-full object-cover transition-opacity duration-300 ${fade ? 'opacity-100' : 'opacity-0'
-                        }`}
+                    className={`w-full h-full object-cover transition-opacity duration-300 ${
+                        fade ? 'opacity-100' : 'opacity-0'
+                    }`}
                 />
 
-                {/* Part Number - Top Center */}
+                {/* Part Number - Top Left */}
                 {partNumber && (
                     <div className="absolute top-2 left-2 bg-gray-900 text-white text-sm font-extrabold px-3 py-1 rounded z-20">
                         {partNumber}
@@ -96,8 +105,8 @@ const ImageScroller: React.FC<ImageScrollerProps> = ({ images, partNumber, isOnS
                     </div>
                 )}
 
-                {/* Arrows */}
-                {images.length > 1 && (
+                {/* Arrows (only if more than 1 image) */}
+                {shouldShowArrows && (
                     <>
                         <button
                             onMouseEnter={() => setIsArrowHovered(true)}

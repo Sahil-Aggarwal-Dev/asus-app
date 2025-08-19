@@ -17,6 +17,10 @@ const ProductsPage: React.FC = () => {
   const [sortBy, setSortBy] = useState<string>('name');
   const [mobileOpen, setMobileOpen] = useState(false);
 
+  // Pagination
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 12;
+
   // Disable body scroll when mobile drawer is open
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? 'hidden' : '';
@@ -49,6 +53,22 @@ const ProductsPage: React.FC = () => {
     return filtered;
   }, [selectedCategory, searchQuery, priceRange, availability, sortBy]);
 
+  // Reset page to 1 when filters change
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [selectedCategory, searchQuery, priceRange, availability, sortBy]);
+
+  // Pagination logic
+  const totalProducts = filteredProducts.length;
+  const totalPages = Math.ceil(totalProducts / itemsPerPage);
+  const paginatedProducts = filteredProducts.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
+
+  const startItem = totalProducts === 0 ? 0 : (currentPage - 1) * itemsPerPage + 1;
+  const endItem = Math.min(currentPage * itemsPerPage, totalProducts);
+
   return (
     <div className="min-h-screen bg-gray-50 relative">
       <div className="max-w-[1800px] mx-auto py-8 flex gap-4">
@@ -73,30 +93,65 @@ const ProductsPage: React.FC = () => {
         {/* Products Area */}
         <div className="flex-1 flex flex-col gap-4">
 
-          {/* Mobile + Tablet Header */}
-          <div className="flex lg:hidden w-full items-center mb-4">
-            {/* Filter Button */}
-            <div className="flex-shrink-0 w-24 flex justify-center">
+          {/* Header: Filters button + Showing text */}
+          <div className="flex w-full items-center justify-between mb-4">
+            {/* Filters Button (mobile + tablet only) */}
+            <div className="flex-shrink-0 lg:hidden">
               <button
                 onClick={() => setMobileOpen(true)}
-                className="px-2 py-2 bg-orange-600 text-white rounded-lg shadow-md hover:bg-orange-700 transition"
+                className="px-4 py-2 bg-orange-600 text-white rounded-lg shadow-md hover:bg-orange-700 transition"
               >
                 Filters
               </button>
             </div>
 
-            {/* Info text */}
-            <div className="flex-1 text-right pr-2">
+            {/* Info Text */}
+            <div className="flex-1 text-right lg:text-left">
               <p className="text-gray-600">
-                Showing {filteredProducts.length} of {products.length} products
+                Showing {startItem}-{endItem} of {totalProducts} products
               </p>
             </div>
           </div>
 
-          {/* Product Grid (handles all screens) */}
+          {/* Product Grid */}
           <div className="w-full">
-            <ProductGrid products={filteredProducts} />
+            <ProductGrid products={paginatedProducts} />
           </div>
+
+          {/* Pagination Controls */}
+          {totalPages > 1 && (
+            <div className="flex justify-center gap-2 mt-4">
+              <button
+                onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                disabled={currentPage === 1}
+                className="px-3 py-1 rounded-md border bg-white text-gray-700 hover:bg-gray-100 disabled:opacity-50"
+              >
+                Previous
+              </button>
+
+              {Array.from({ length: totalPages }, (_, idx) => (
+                <button
+                  key={idx + 1}
+                  onClick={() => setCurrentPage(idx + 1)}
+                  className={`px-3 py-1 rounded-md border ${
+                    currentPage === idx + 1
+                      ? 'bg-orange-600 text-white'
+                      : 'bg-white text-gray-700 hover:bg-gray-100'
+                  }`}
+                >
+                  {idx + 1}
+                </button>
+              ))}
+
+              <button
+                onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                disabled={currentPage === totalPages}
+                className="px-3 py-1 rounded-md border bg-white text-gray-700 hover:bg-gray-100 disabled:opacity-50"
+              >
+                Next
+              </button>
+            </div>
+          )}
         </div>
 
         {/* Mobile / Tablet Drawer */}

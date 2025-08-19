@@ -54,7 +54,7 @@ const FeaturedProducts: React.FC = () => {
                     images={product.images}
                     partNumber={product.partNumber}
                     isOnSale={!!isOnSale}
-                    setTime={1000}
+                    setTime={1500}
                   />
 
                   <div className="p-3 flex flex-col flex-1">

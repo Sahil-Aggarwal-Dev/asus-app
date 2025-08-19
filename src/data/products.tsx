@@ -228,5 +228,317 @@ export const products: Product[] = [
     // warranty: '2 Years',
     featured: true,
     tags: ['Final Drive', 'Speed Reduction', 'Torque', 'Ground Drive']
+  },
+  {
+    id: '10',
+    name: 'Final Drive Gear System',
+    partNumber: 'ASU-FDG-003',
+    category: '3',
+    price: 289.99,
+    images: [
+      'https://images.pexels.com/photos/159275/macro-gear-gear-wheel-cogs-159275.jpeg?auto=compress&cs=tinysrgb&w=800'
+    ],
+    description: 'Final drive gear system components for optimal ground speed control',
+    detailedDescription: 'Precision-engineered final drive gear system providing optimal speed reduction and torque multiplication for ground drive applications.',
+    availability: 'In Stock',
+    specifications: {
+      'Reduction Ratio': '25:1',
+      'Input Speed': '2000 RPM',
+      'Output Torque': '8000 Nm',
+      'Efficiency': '95%',
+      'Mounting': 'Flange Mount'
+    },
+    compatibility: ['Track Drive', 'Wheel Drive'],
+    // warranty: '2 Years',
+    featured: true,
+    tags: ['Final Drive', 'Speed Reduction', 'Torque', 'Ground Drive']
+  },
+  {
+    id: '11',
+    name: 'Final Drive Gear System',
+    partNumber: 'ASU-FDG-003',
+    category: '3',
+    price: 289.99,
+    images: [
+      'https://images.pexels.com/photos/159275/macro-gear-gear-wheel-cogs-159275.jpeg?auto=compress&cs=tinysrgb&w=800'
+    ],
+    description: 'Final drive gear system components for optimal ground speed control',
+    detailedDescription: 'Precision-engineered final drive gear system providing optimal speed reduction and torque multiplication for ground drive applications.',
+    availability: 'In Stock',
+    specifications: {
+      'Reduction Ratio': '25:1',
+      'Input Speed': '2000 RPM',
+      'Output Torque': '8000 Nm',
+      'Efficiency': '95%',
+      'Mounting': 'Flange Mount'
+    },
+    compatibility: ['Track Drive', 'Wheel Drive'],
+    // warranty: '2 Years',
+    featured: true,
+    tags: ['Final Drive', 'Speed Reduction', 'Torque', 'Ground Drive']
+  },
+  {
+    id: '12',
+    name: 'Final Drive Gear System',
+    partNumber: 'ASU-FDG-003',
+    category: '3',
+    price: 289.99,
+    images: [
+      'https://images.pexels.com/photos/159275/macro-gear-gear-wheel-cogs-159275.jpeg?auto=compress&cs=tinysrgb&w=800'
+    ],
+    description: 'Final drive gear system components for optimal ground speed control',
+    detailedDescription: 'Precision-engineered final drive gear system providing optimal speed reduction and torque multiplication for ground drive applications.',
+    availability: 'In Stock',
+    specifications: {
+      'Reduction Ratio': '25:1',
+      'Input Speed': '2000 RPM',
+      'Output Torque': '8000 Nm',
+      'Efficiency': '95%',
+      'Mounting': 'Flange Mount'
+    },
+    compatibility: ['Track Drive', 'Wheel Drive'],
+    // warranty: '2 Years',
+    featured: true,
+    tags: ['Final Drive', 'Speed Reduction', 'Torque', 'Ground Drive']
+  },
+  {
+    id: '13',
+    name: 'Final Drive Gear System',
+    partNumber: 'ASU-FDG-003',
+    category: '3',
+    price: 289.99,
+    images: [
+      'https://images.pexels.com/photos/159275/macro-gear-gear-wheel-cogs-159275.jpeg?auto=compress&cs=tinysrgb&w=800'
+    ],
+    description: 'Final drive gear system components for optimal ground speed control',
+    detailedDescription: 'Precision-engineered final drive gear system providing optimal speed reduction and torque multiplication for ground drive applications.',
+    availability: 'In Stock',
+    specifications: {
+      'Reduction Ratio': '25:1',
+      'Input Speed': '2000 RPM',
+      'Output Torque': '8000 Nm',
+      'Efficiency': '95%',
+      'Mounting': 'Flange Mount'
+    },
+    compatibility: ['Track Drive', 'Wheel Drive'],
+    // warranty: '2 Years',
+    featured: true,
+    tags: ['Final Drive', 'Speed Reduction', 'Torque', 'Ground Drive']
+  },
+  {
+    id: '14',
+    name: 'Final Drive Gear System',
+    partNumber: 'ASU-FDG-003',
+    category: '3',
+    price: 289.99,
+    images: [
+      'https://images.pexels.com/photos/159275/macro-gear-gear-wheel-cogs-159275.jpeg?auto=compress&cs=tinysrgb&w=800'
+    ],
+    description: 'Final drive gear system components for optimal ground speed control',
+    detailedDescription: 'Precision-engineered final drive gear system providing optimal speed reduction and torque multiplication for ground drive applications.',
+    availability: 'In Stock',
+    specifications: {
+      'Reduction Ratio': '25:1',
+      'Input Speed': '2000 RPM',
+      'Output Torque': '8000 Nm',
+      'Efficiency': '95%',
+      'Mounting': 'Flange Mount'
+    },
+    compatibility: ['Track Drive', 'Wheel Drive'],
+    // warranty: '2 Years',
+    featured: true,
+    tags: ['Final Drive', 'Speed Reduction', 'Torque', 'Ground Drive']
+  },
+  {
+    id: '15',
+    name: 'Final Drive Gear System',
+    partNumber: 'ASU-FDG-003',
+    category: '3',
+    price: 289.99,
+    images: [
+      'https://images.pexels.com/photos/159275/macro-gear-gear-wheel-cogs-159275.jpeg?auto=compress&cs=tinysrgb&w=800'
+    ],
+    description: 'Final drive gear system components for optimal ground speed control',
+    detailedDescription: 'Precision-engineered final drive gear system providing optimal speed reduction and torque multiplication for ground drive applications.',
+    availability: 'In Stock',
+    specifications: {
+      'Reduction Ratio': '25:1',
+      'Input Speed': '2000 RPM',
+      'Output Torque': '8000 Nm',
+      'Efficiency': '95%',
+      'Mounting': 'Flange Mount'
+    },
+    compatibility: ['Track Drive', 'Wheel Drive'],
+    // warranty: '2 Years',
+    featured: true,
+    tags: ['Final Drive', 'Speed Reduction', 'Torque', 'Ground Drive']
+  },
+  {
+    id: '16',
+    name: 'Final Drive Gear System',
+    partNumber: 'ASU-FDG-003',
+    category: '3',
+    price: 289.99,
+    images: [
+      'https://images.pexels.com/photos/159275/macro-gear-gear-wheel-cogs-159275.jpeg?auto=compress&cs=tinysrgb&w=800'
+    ],
+    description: 'Final drive gear system components for optimal ground speed control',
+    detailedDescription: 'Precision-engineered final drive gear system providing optimal speed reduction and torque multiplication for ground drive applications.',
+    availability: 'In Stock',
+    specifications: {
+      'Reduction Ratio': '25:1',
+      'Input Speed': '2000 RPM',
+      'Output Torque': '8000 Nm',
+      'Efficiency': '95%',
+      'Mounting': 'Flange Mount'
+    },
+    compatibility: ['Track Drive', 'Wheel Drive'],
+    // warranty: '2 Years',
+    featured: true,
+    tags: ['Final Drive', 'Speed Reduction', 'Torque', 'Ground Drive']
+  },
+  {
+    id: '17',
+    name: 'Final Drive Gear System',
+    partNumber: 'ASU-FDG-003',
+    category: '3',
+    price: 289.99,
+    images: [
+      'https://images.pexels.com/photos/159275/macro-gear-gear-wheel-cogs-159275.jpeg?auto=compress&cs=tinysrgb&w=800'
+    ],
+    description: 'Final drive gear system components for optimal ground speed control',
+    detailedDescription: 'Precision-engineered final drive gear system providing optimal speed reduction and torque multiplication for ground drive applications.',
+    availability: 'In Stock',
+    specifications: {
+      'Reduction Ratio': '25:1',
+      'Input Speed': '2000 RPM',
+      'Output Torque': '8000 Nm',
+      'Efficiency': '95%',
+      'Mounting': 'Flange Mount'
+    },
+    compatibility: ['Track Drive', 'Wheel Drive'],
+    // warranty: '2 Years',
+    featured: true,
+    tags: ['Final Drive', 'Speed Reduction', 'Torque', 'Ground Drive']
+  },
+  {
+    id: '18',
+    name: 'Final Drive Gear System',
+    partNumber: 'ASU-FDG-003',
+    category: '3',
+    price: 289.99,
+    images: [
+      'https://images.pexels.com/photos/159275/macro-gear-gear-wheel-cogs-159275.jpeg?auto=compress&cs=tinysrgb&w=800'
+    ],
+    description: 'Final drive gear system components for optimal ground speed control',
+    detailedDescription: 'Precision-engineered final drive gear system providing optimal speed reduction and torque multiplication for ground drive applications.',
+    availability: 'In Stock',
+    specifications: {
+      'Reduction Ratio': '25:1',
+      'Input Speed': '2000 RPM',
+      'Output Torque': '8000 Nm',
+      'Efficiency': '95%',
+      'Mounting': 'Flange Mount'
+    },
+    compatibility: ['Track Drive', 'Wheel Drive'],
+    // warranty: '2 Years',
+    featured: true,
+    tags: ['Final Drive', 'Speed Reduction', 'Torque', 'Ground Drive']
+  },
+  {
+    id: '19',
+    name: 'Final Drive Gear System',
+    partNumber: 'ASU-FDG-003',
+    category: '3',
+    price: 289.99,
+    images: [
+      'https://images.pexels.com/photos/159275/macro-gear-gear-wheel-cogs-159275.jpeg?auto=compress&cs=tinysrgb&w=800'
+    ],
+    description: 'Final drive gear system components for optimal ground speed control',
+    detailedDescription: 'Precision-engineered final drive gear system providing optimal speed reduction and torque multiplication for ground drive applications.',
+    availability: 'In Stock',
+    specifications: {
+      'Reduction Ratio': '25:1',
+      'Input Speed': '2000 RPM',
+      'Output Torque': '8000 Nm',
+      'Efficiency': '95%',
+      'Mounting': 'Flange Mount'
+    },
+    compatibility: ['Track Drive', 'Wheel Drive'],
+    // warranty: '2 Years',
+    featured: true,
+    tags: ['Final Drive', 'Speed Reduction', 'Torque', 'Ground Drive']
+  },
+  {
+    id: '20',
+    name: 'Final Drive Gear System',
+    partNumber: 'ASU-FDG-003',
+    category: '3',
+    price: 289.99,
+    images: [
+      'https://images.pexels.com/photos/159275/macro-gear-gear-wheel-cogs-159275.jpeg?auto=compress&cs=tinysrgb&w=800'
+    ],
+    description: 'Final drive gear system components for optimal ground speed control',
+    detailedDescription: 'Precision-engineered final drive gear system providing optimal speed reduction and torque multiplication for ground drive applications.',
+    availability: 'In Stock',
+    specifications: {
+      'Reduction Ratio': '25:1',
+      'Input Speed': '2000 RPM',
+      'Output Torque': '8000 Nm',
+      'Efficiency': '95%',
+      'Mounting': 'Flange Mount'
+    },
+    compatibility: ['Track Drive', 'Wheel Drive'],
+    // warranty: '2 Years',
+    featured: true,
+    tags: ['Final Drive', 'Speed Reduction', 'Torque', 'Ground Drive']
+  },
+  {
+    id: '21',
+    name: 'Final Drive Gear System',
+    partNumber: 'ASU-FDG-003',
+    category: '3',
+    price: 289.99,
+    images: [
+      'https://images.pexels.com/photos/159275/macro-gear-gear-wheel-cogs-159275.jpeg?auto=compress&cs=tinysrgb&w=800'
+    ],
+    description: 'Final drive gear system components for optimal ground speed control',
+    detailedDescription: 'Precision-engineered final drive gear system providing optimal speed reduction and torque multiplication for ground drive applications.',
+    availability: 'In Stock',
+    specifications: {
+      'Reduction Ratio': '25:1',
+      'Input Speed': '2000 RPM',
+      'Output Torque': '8000 Nm',
+      'Efficiency': '95%',
+      'Mounting': 'Flange Mount'
+    },
+    compatibility: ['Track Drive', 'Wheel Drive'],
+    // warranty: '2 Years',
+    featured: true,
+    tags: ['Final Drive', 'Speed Reduction', 'Torque', 'Ground Drive']
+  },
+  {
+    id: '22',
+    name: 'Final Drive Gear System',
+    partNumber: 'ASU-FDG-003',
+    category: '3',
+    price: 289.99,
+    images: [
+      'https://images.pexels.com/photos/159275/macro-gear-gear-wheel-cogs-159275.jpeg?auto=compress&cs=tinysrgb&w=800'
+    ],
+    description: 'Final drive gear system components for optimal ground speed control',
+    detailedDescription: 'Precision-engineered final drive gear system providing optimal speed reduction and torque multiplication for ground drive applications.',
+    availability: 'In Stock',
+    specifications: {
+      'Reduction Ratio': '25:1',
+      'Input Speed': '2000 RPM',
+      'Output Torque': '8000 Nm',
+      'Efficiency': '95%',
+      'Mounting': 'Flange Mount'
+    },
+    compatibility: ['Track Drive', 'Wheel Drive'],
+    // warranty: '2 Years',
+    featured: true,
+    tags: ['Final Drive', 'Speed Reduction', 'Torque', 'Ground Drive']
   }
 ];
