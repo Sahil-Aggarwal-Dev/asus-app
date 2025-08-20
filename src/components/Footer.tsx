@@ -87,30 +87,38 @@ const Footer: React.FC = () => {
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-slate-800">
+      <div className="bg-slate-900 border-t border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex flex-col sm:flex-row justify-between items-center">
-            <div className="text-gray-400 text-sm mb-4 sm:mb-0">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-0">
+
+            {/* Copyright */}
+            <div className="text-gray-400 text-sm text-center sm:text-left">
               © 2025 ASUS Spare Parts. All rights reserved.
             </div>
+
+            {/* Designer Credit */}
             <a
-              href="https://www.linkedin.com/in/sahil-aggarwal-446739217/"
-              className="hover:text-orange-500 transition-colors flex items-center space-x-2 text-sm"
+              href="https://www.linkedin.com/in/sahil-aggarwal-446739217/" // YOUR unique public URL
               target="_blank"
               rel="noopener noreferrer"
+              className="flex items-center space-x-2 text-sm text-gray-400 hover:text-orange-500 transition-colors"
             >
-              <Sparkles className="w-5 h-5 text-gray-400 hover:text-orange-500" />
+              <Sparkles className="w-5 h-5" />
               <span>Designed & Developed by Sahil Aggarwal</span>
             </a>
 
             {/* Optional Links */}
-            {/* <div className="flex space-x-6 text-sm text-gray-400">
-              <a href="#" className="hover:text-orange-500 transition-colors">Terms of Service</a>
-              <a href="#" className="hover:text-orange-500 transition-colors">Warranty</a>
-            </div> */}
+            {/* 
+      <div className="flex space-x-6 text-sm text-gray-400 mt-2 sm:mt-0">
+        <a href="#" className="hover:text-orange-500 transition-colors">Terms of Service</a>
+        <a href="#" className="hover:text-orange-500 transition-colors">Warranty</a>
+      </div> 
+      */}
+
           </div>
         </div>
       </div>
+
     </footer>
   );
 };
