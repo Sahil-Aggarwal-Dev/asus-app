@@ -22,22 +22,23 @@ const Header: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
           <div className="flex items-center space-x-6 font-medium">
             <div className="flex items-center space-x-1 hover:text-amber-400 transition-colors cursor-pointer">
-              <Phone size={14} className="text-amber-400" /> 
-              <span>+1-234-567-8900</span>
+              <Phone size={14} className="text-amber-400" />
+              <span>+91-8295659245</span>
+              <span>+91-8750108980</span>
             </div>
             <div className="flex items-center space-x-1 hover:text-amber-400 transition-colors cursor-pointer">
-              <Mail size={14} className="text-amber-400" /> 
+              <Mail size={14} className="text-amber-400" />
               <span>info@asussparparts.com</span>
             </div>
           </div>
-          <div className="hidden sm:block italic text-gray-500">
+          <div className="hidden sm:block italic text-white-500">
             Premium Heavy Machinery Parts
           </div>
         </div>
       </div>
 
       {/* Unique Main Header */}
-      <div className="bg-gradient-to-r from-black via-amber-900 to-amber-700 shadow-md">
+      <div className="bg-gradient-to-r from-black via-amber-1000 to-amber-700 shadow-md">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-3">
             {/* Logo */}
@@ -109,9 +110,8 @@ const Header: React.FC = () => {
 
         {/* Mobile Navigation */}
         <div
-          className={`md:hidden bg-gradient-to-b from-black via-amber-900 to-amber-700 transition-all duration-300 ${
-            isMenuOpen ? 'max-h-screen py-2' : 'max-h-0 overflow-hidden'
-          }`}
+          className={`md:hidden bg-gradient-to-b from-black via-amber-900 to-amber-700 transition-all duration-300 ${isMenuOpen ? 'max-h-screen py-2' : 'max-h-0 overflow-hidden'
+            }`}
         >
           <nav className="px-4 flex flex-col space-y-2 text-gray-200 font-roboto font-medium text-sm">
             {['Home', 'Products', 'About', 'Contact'].map((item) => (
