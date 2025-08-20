@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import {
   ArrowLeft,
@@ -13,15 +13,18 @@ import {
 } from 'lucide-react';
 import { products } from '../data/products';
 import WatermarkedImage from '../components/Watermark';
-import ImageScroller from '../components/ImageScroller';
+import RelatedProducts from '../components/RelatedProducts';
 
 const ProductDetailPage: React.FC = () => {
-  const { id } = useParams < { id: string } > ();
+  const { id } = useParams<{ id: string }>();
   const product = products.find(p => p.id === id);
   const [selectedImage, setSelectedImage] = useState(0);
   const [showInquiryForm, setShowInquiryForm] = useState(false);
 
-  const scrollRef = useRef < HTMLDivElement > (null);
+  // Reset selected image when product changes (safety)
+  useEffect(() => {
+    setSelectedImage(0);
+  }, [product?.id]);
 
   if (!product) {
     return (
@@ -48,20 +51,6 @@ const ProductDetailPage: React.FC = () => {
         return 'text-red-600';
       default:
         return 'text-gray-600';
-    }
-  };
-
-  const relatedProducts = products
-    .filter(p => p.category === product.category && p.id !== product.id)
-    .slice(0, 12);
-
-  const scroll = (direction: 'left' | 'right') => {
-    if (scrollRef.current) {
-      const scrollAmount = 300;
-      scrollRef.current.scrollBy({
-        left: direction === 'left' ? -scrollAmount : scrollAmount,
-        behavior: 'smooth',
-      });
     }
   };
 
@@ -110,6 +99,7 @@ const ProductDetailPage: React.FC = () => {
                       ? 'border-orange-600'
                       : 'border-gray-200'
                       }`}
+                    aria-label={`View image ${index + 1}`}
                   >
                     <WatermarkedImage
                       src={image}
@@ -129,7 +119,7 @@ const ProductDetailPage: React.FC = () => {
                 className="w-full h-full object-contain"
               />
 
-              {/* Left Arrow */}
+              {/* Left Arrow (image scroller) */}
               {product.images.length > 1 && (
                 <button
                   onClick={() =>
@@ -138,12 +128,13 @@ const ProductDetailPage: React.FC = () => {
                     )
                   }
                   className="absolute left-2 sm:left-3 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-1.5 sm:p-2 shadow-md"
+                  aria-label="Previous image"
                 >
                   <ChevronLeft size={20} className="text-gray-700" />
                 </button>
               )}
 
-              {/* Right Arrow */}
+              {/* Right Arrow (image scroller) */}
               {product.images.length > 1 && (
                 <button
                   onClick={() =>
@@ -152,6 +143,7 @@ const ProductDetailPage: React.FC = () => {
                     )
                   }
                   className="absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-1.5 sm:p-2 shadow-md"
+                  aria-label="Next image"
                 >
                   <ChevronRight size={20} className="text-gray-700" />
                 </button>
@@ -217,7 +209,7 @@ const ProductDetailPage: React.FC = () => {
                 </div>
               )}
 
-              {/* Buttons (Fixed for small devices) */}
+              {/* Buttons */}
               <div className="flex flex-col sm:flex-row gap-3">
                 <button
                   onClick={() => setShowInquiryForm(true)}
@@ -308,66 +300,10 @@ const ProductDetailPage: React.FC = () => {
         </div>
 
         {/* Related Products */}
-        {relatedProducts.length > 0 && (
-          <div className="mt-12 sm:mt-16 relative">
-            <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6 sm:mb-8">
-              Related Products
-            </h2>
-
-            {/* Left Arrow */}
-            <button
-              onClick={() => scroll('left')}
-              className="absolute -left-3 sm:-left-6 top-1/2 transform -translate-y-1/2 z-10 bg-white p-2 rounded-full shadow hover:bg-gray-100"
-            >
-              <ChevronLeft size={24} />
-            </button>
-
-            <div
-              ref={scrollRef}
-              className="flex space-x-6 overflow-x-auto scroll-smooth py-4 hide-scrollbar"
-            >
-              {relatedProducts.map((relatedProduct) => (
-                <div
-                  key={relatedProduct.id}
-                  className="flex-shrink-0 w-64 bg-white shadow rounded-lg overflow-hidden relative hover:shadow-lg transition-shadow cursor-pointer text-sm"
-                >
-                  <ImageScroller
-                    images={relatedProduct.images}
-                    partNumber={relatedProduct.partNumber}
-                    isOnSale={
-                      !!relatedProduct.originalPrice &&
-                      relatedProduct.originalPrice > relatedProduct.price
-                    }
-                    setTime={1000}
-                  />
-
-                  <div className="p-3 sm:p-4">
-                    <Link
-                      to={`/products/${relatedProduct.id}`}
-                      className="font-semibold text-gray-900 mb-1 sm:mb-2 group-hover:text-orange-600 transition-colors text-sm sm:text-base truncate"
-                    >
-                      {relatedProduct.name}
-                    </Link>
-                    <p className="text-gray-600 text-xs sm:text-sm mb-1">
-                      {relatedProduct.partNumber}
-                    </p>
-                    <div className="text-sm sm:text-lg font-bold text-gray-900">
-                      ₹{relatedProduct.price}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Right Arrow */}
-            <button
-              onClick={() => scroll('right')}
-              className="absolute -right-3 sm:-right-6 top-1/2 transform -translate-y-1/2 z-10 bg-white p-2 rounded-full shadow hover:bg-gray-100"
-            >
-              <ChevronRight size={24} />
-            </button>
-          </div>
-        )}
+        <RelatedProducts
+          category={product.category}
+          currentProductId={Number(product.id)}
+        />
       </div>
 
       {/* Inquiry Modal */}
@@ -377,7 +313,7 @@ const ProductDetailPage: React.FC = () => {
             <h3 className="text-lg sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">
               Quick Inquiry
             </h3>
-            <form className="space-y-3 sm:space-y-4 text-sm sm:text-base">
+            <form className="space-y-3 sm:space-y-4 text-sm sm:text-base" onSubmit={(e) => { e.preventDefault(); /* wire up submission */ }}>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Name
@@ -436,9 +372,9 @@ const ProductDetailPage: React.FC = () => {
       )}
 
       {/* Contact CTA */}
-      <div className="bg-orange-600 text-white py-6 sm:py-8">
+      <div className="bg-orange-600 text-white py-2 sm:py-4">
         <div className="w-full px-2 sm:px-4 lg:px-6 text-center">
-          <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">
+          <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-2">
             Need Help Finding the Right Part?
           </h3>
           <p className="text-orange-100 mb-4 sm:mb-6 text-sm sm:text-base">
@@ -447,11 +383,11 @@ const ProductDetailPage: React.FC = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
             <a
-              href="tel:+1-234-567-8900"
+              href="tel:+918295659245"
               className="inline-flex items-center justify-center px-4 sm:px-6 py-2 sm:py-3 bg-white text-orange-600 rounded-lg font-semibold hover:bg-gray-100 transition-colors text-sm sm:text-base"
             >
               <Phone size={18} className="mr-2" />
-              Call Now: +1-234-567-8900
+              Call Now: +91-8295659245
             </a>
             <Link
               to="/contact"
@@ -462,7 +398,7 @@ const ProductDetailPage: React.FC = () => {
           </div>
         </div>
       </div>
-    </div >
+    </div>
   );
 };
 
