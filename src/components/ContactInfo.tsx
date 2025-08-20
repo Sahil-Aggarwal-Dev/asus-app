@@ -1,13 +1,13 @@
 import React from 'react';
-import { Phone, Mail, MapPin, Clock, Globe, MessageCircle } from 'lucide-react';
+import { Phone, Mail, MapPin } from 'lucide-react';
 
 const ContactInfo: React.FC = () => {
   const contactMethods = [
     {
       icon: <Phone size={24} />,
       title: 'Phone Support',
-      primary: '+1-234-567-8900',
-      secondary: 'Mon-Fri: 8AM-6PM EST',
+      primary: '+91 8298659245/+91 8750108980',
+      secondary: 'Mon-Sun: 9AM-7PM IST',
       description: 'Speak directly with our technical experts'
     },
     {
@@ -18,26 +18,12 @@ const ContactInfo: React.FC = () => {
       description: '24/7 email support with quick response'
     },
     {
-      icon: <MessageCircle size={24} />,
-      title: 'Live Chat',
-      primary: 'Available Now',
-      secondary: 'Mon-Fri: 8AM-8PM EST',
-      description: 'Instant help from our support team'
-    },
-    {
       icon: <MapPin size={24} />,
       title: 'Visit Our Facility',
-      primary: '1234 Industrial Blvd',
-      secondary: 'Industrial City, IC 12345',
+      primary: 'Parnyab Enterprises Pvt. Ltd.',
+      secondary: '834/35, GALI NO. 1, WEST RAJIV NAGAR, GURUGRAM , HARYANA-122001, INDIA',
       description: 'Schedule a visit to our warehouse'
     }
-  ];
-
-  const businessHours = [
-    { day: 'Monday - Friday', hours: '8:00 AM - 6:00 PM EST' },
-    { day: 'Saturday', hours: '9:00 AM - 4:00 PM EST' },
-    { day: 'Sunday', hours: 'Closed' },
-    { day: 'Emergency Support', hours: '24/7 Available' }
   ];
 
   return (
@@ -45,7 +31,7 @@ const ContactInfo: React.FC = () => {
       <div>
         <h2 className="text-2xl font-bold text-slate-900 mb-6">Get In Touch</h2>
         <p className="text-gray-600 leading-relaxed mb-8">
-          Our team of experts is ready to help you find the right parts and answer all your questions. 
+          Our team of experts is ready to help you find the right parts and answer all your questions.
           Choose the contact method that works best for you.
         </p>
       </div>
@@ -69,60 +55,47 @@ const ContactInfo: React.FC = () => {
         ))}
       </div>
 
-      {/* Business Hours */}
-      <div className="bg-gray-50 p-6 rounded-xl">
-        <div className="flex items-center mb-4">
-          <Clock className="text-orange-600 mr-2" size={24} />
-          <h3 className="text-lg font-semibold text-slate-900">Business Hours</h3>
-        </div>
-        <div className="space-y-3">
-          {businessHours.map((schedule, index) => (
-            <div key={index} className="flex justify-between items-center">
-              <span className="text-gray-700 font-medium">{schedule.day}</span>
-              <span className="text-gray-600">{schedule.hours}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Quick Facts */}
-      <div className="bg-orange-50 p-6 rounded-xl border border-orange-200">
+      {/* Why Asus?*/}
+      {/* <div className="bg-orange-50 p-6 rounded-xl border border-orange-200">
         <h3 className="text-lg font-semibold text-slate-900 mb-4">Why Choose ASUS?</h3>
         <div className="space-y-3">
           <div className="flex items-center space-x-3">
             <div className="w-2 h-2 bg-orange-600 rounded-full"></div>
-            <span className="text-gray-700">15+ years of industry experience</span>
+            <span className="text-gray-700">Global-Quality standards - Manufactured to meet demanding International performance requirements.</span>
           </div>
           <div className="flex items-center space-x-3">
             <div className="w-2 h-2 bg-orange-600 rounded-full"></div>
-            <span className="text-gray-700">OEM quality parts and components</span>
+            <span className="text-gray-700">Exact Fitment - Engineered to seamlessly integrate with OEM equipment</span>
           </div>
           <div className="flex items-center space-x-3">
             <div className="w-2 h-2 bg-orange-600 rounded-full"></div>
-            <span className="text-gray-700">Fast shipping worldwide</span>
+            <span className="text-gray-700">Competitive Pricing - Exceptional value without sacrificing quality</span>
           </div>
           <div className="flex items-center space-x-3">
             <div className="w-2 h-2 bg-orange-600 rounded-full"></div>
-            <span className="text-gray-700">Expert technical support</span>
+            <span className="text-gray-700">Reliable Availability - Streamlined distribution for fast delivery</span>
           </div>
           <div className="flex items-center space-x-3">
             <div className="w-2 h-2 bg-orange-600 rounded-full"></div>
-            <span className="text-gray-700">Competitive pricing</span>
+            <span className="text-gray-700">Customer-Driven Service - Our expert team is committed to supporting dealers, workshops, and end-users worldwide</span>
           </div>
         </div>
-      </div>
+      </div> */}
 
-      {/* Emergency Contact */}
-      <div className="bg-red-50 p-6 rounded-xl border border-red-200">
-        <h3 className="text-lg font-semibold text-red-900 mb-2">Emergency Support</h3>
-        <p className="text-red-700 mb-3">
-          Need urgent assistance? Our emergency support line is available 24/7 for critical situations.
-        </p>
-        <div className="flex items-center space-x-2">
-          <Phone className="text-red-600" size={18} />
-          <span className="font-semibold text-red-900">+1-234-567-HELP (4357)</span>
+      {/* Our Vision */}
+      {/* <div className="bg-orange-50 p-6 rounded-xl border border-orange-200">
+        <h3 className="text-lg font-semibold text-slate-900 mb-4">our vision</h3>
+        <div className="space-y-3">
+          <div className="flex items-center space-x-3">
+            <div className="w-2 h-2 bg-orange-600 rounded-full"></div>
+            <span className="text-gray-700">To become a globally trusted spare parts brand for construction and agricultural equipment — known for delivering innovative, reliable, and cost-effective solutions that help power progress in every corner of the world.</span>
+          </div>
+          <div className="flex items-center space-x-3">
+            <div className="w-2 h-2 bg-orange-600 rounded-full"></div>
+            <span className="text-gray-700">Empowering machines. Driving industries. Connecting the world.</span>
+          </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

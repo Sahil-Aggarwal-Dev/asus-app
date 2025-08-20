@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Phone, Mail, MapPin, Facebook, Twitter, Linkedin, Instagram } from 'lucide-react';
+import { Phone, Mail, MapPin, Facebook, Linkedin, Instagram, X, Sparkles } from 'lucide-react';
 
 const Footer: React.FC = () => {
   return (
@@ -10,8 +10,13 @@ const Footer: React.FC = () => {
           {/* Company Info */}
           <div className="lg:col-span-2">
             <div className="flex items-center mb-6">
-              <div className="bg-orange-600 text-white px-4 py-2 rounded-lg font-bold text-xl">
-                ASUS
+              <div className="Logo">
+                <img
+                  decoding="async"
+                  src="https://raw.githubusercontent.com/Sahil-Aggarwal-Dev/asus-assests/main/Asus_logo_1.png"
+                  alt="Backhoe Loader"
+                  className="h-16 w-auto mx-auto object-contain"
+                />
               </div>
               <div className="ml-3">
                 <div className="font-bold text-white text-lg">SPARE PARTS</div>
@@ -19,7 +24,7 @@ const Footer: React.FC = () => {
               </div>
             </div>
             <p className="text-gray-300 leading-relaxed mb-6 max-w-md">
-              Your trusted partner for premium quality spare parts for heavy machinery. 
+              Your trusted partner for premium quality spare parts for heavy machinery.
               We specialize in backhoe loader parts with a commitment to excellence and reliability.
             </p>
             <div className="flex space-x-4">
@@ -27,7 +32,7 @@ const Footer: React.FC = () => {
                 <Facebook size={20} />
               </a>
               <a href="#" className="bg-slate-800 hover:bg-orange-600 p-3 rounded-lg transition-colors">
-                <Twitter size={20} />
+                <X size={20} />
               </a>
               <a href="#" className="bg-slate-800 hover:bg-orange-600 p-3 rounded-lg transition-colors">
                 <Linkedin size={20} />
@@ -58,22 +63,24 @@ const Footer: React.FC = () => {
               <div className="flex items-start space-x-3">
                 <Phone className="text-orange-500 mt-1" size={18} />
                 <div>
-                  <p className="text-gray-300">+1-234-567-8900</p>
-                  <p className="text-sm text-gray-400">Mon-Fri: 8AM-6PM EST</p>
+                  <p className="text-gray-300">+91 8298659245</p>
+                  <p className="text-gray-300">+91 8298659245</p>
+                  <p className="text-sm text-gray-400">Mon-Sun: 9AM-7PM IST</p>
                 </div>
               </div>
               <div className="flex items-start space-x-3">
                 <Mail className="text-orange-500 mt-1" size={18} />
                 <div>
                   <p className="text-gray-300">info@asussparparts.com</p>
-                  <p className="text-sm text-gray-400">24/7 Email Support</p>
+                  {/* <p className="text-sm text-gray-400">24/7 Email Support</p> */}
                 </div>
               </div>
               <div className="flex items-start space-x-3">
                 <MapPin className="text-orange-500 mt-1" size={18} />
                 <div>
-                  <p className="text-gray-300">1234 Industrial Blvd</p>
-                  <p className="text-gray-300">Industrial City, IC 12345</p>
+                  <p className="text-gray-300">Parnyab Enterprises Pvt. Ltd.</p>
+                  <p className="text-gray-300">834/35, West rajiv nagar, Sector-12</p>
+                  <p className="text-gray-300">Gurugram, Haryana-122001, INDIA</p>
                 </div>
               </div>
             </div>
@@ -86,13 +93,23 @@ const Footer: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col sm:flex-row justify-between items-center">
             <div className="text-gray-400 text-sm mb-4 sm:mb-0">
-              © 2024 ASUS Spare Parts. All rights reserved.
+              © 2025 ASUS Spare Parts. All rights reserved.
             </div>
-            <div className="flex space-x-6 text-sm text-gray-400">
-              <a href="#" className="hover:text-orange-500 transition-colors">Privacy Policy</a>
+            <a
+              href="https://www.linkedin.com/in/sahil-aggarwal-446739217/"
+              className="hover:text-orange-500 transition-colors flex items-center space-x-2 text-sm"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Sparkles className="w-5 h-5 text-gray-400 hover:text-orange-500" />
+              <span>Designed & Developed by Sahil Aggarwal</span>
+            </a>
+
+            {/* Optional Links */}
+            {/* <div className="flex space-x-6 text-sm text-gray-400">
               <a href="#" className="hover:text-orange-500 transition-colors">Terms of Service</a>
               <a href="#" className="hover:text-orange-500 transition-colors">Warranty</a>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

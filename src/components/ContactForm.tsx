@@ -47,7 +47,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ productName, partNumber }) =>
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <form onSubmit={handleSubmit} className="space-y-6 pb-3">
       <div className="flex items-center space-x-3 mb-6">
         <MessageSquare className="text-orange-600" size={24} />
         <h3 className="text-2xl font-bold text-slate-900">Send us a message</h3>

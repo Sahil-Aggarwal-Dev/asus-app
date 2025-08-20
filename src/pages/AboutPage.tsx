@@ -1,10 +1,10 @@
 import React from 'react';
-import { Shield, Award, Users, Clock, CheckCircle, Star, Target, Heart, Zap } from 'lucide-react';
+import { Shield, Award, Users, Clock, CheckCircle, Target, Heart, Zap } from 'lucide-react';
 
 const AboutPage: React.FC = () => {
   const stats = [
     { icon: <Users size={32} />, number: '500+', label: 'Happy Customers', description: 'Satisfied clients worldwide' },
-    { icon: <Award size={32} />, number: '15+', label: 'Years Experience', description: 'Industry expertise' },
+    { icon: <Award size={32} />, number: '1+', label: 'Years Experience', description: 'Industry expertise' },
     { icon: <CheckCircle size={32} />, number: '1000+', label: 'Parts Available', description: 'Comprehensive inventory' },
     { icon: <Clock size={32} />, number: '24/7', label: 'Support Available', description: 'Round-the-clock assistance' }
   ];
@@ -67,8 +67,7 @@ const AboutPage: React.FC = () => {
           <div className="text-center">
             <h1 className="text-5xl font-bold mb-6">About ASUS Spare Parts</h1>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              For over 15 years, we've been the trusted partner for heavy machinery operators worldwide, 
-              providing premium quality spare parts and exceptional service.
+              Asus is a next-generation brand committed to delivering high-performance spare parts for backhoe loaders with a global standard of quality and reliability. Born from deep industry experience and a passion for engineering excellence, Asus aims to support the construction and heavy equipment sector with parts that offer superior durability, precision fitment, and exceptional value. Our vision is not limited to one region — we aspire to serve customers worldwide, from the heart of bustling cities to the most rugged terrains where machines work the hardest. Every product that carries the Asus name reflects our promise of Power. Precision. Performance. Whether you're a dealer, contractor, rental house, or machine owner, Asus is here to power your machines, minimize downtime, and help your business move forward with confidence. With a focus on innovation, customer satisfaction, and expanding global reach, Asus is more than just parts — it's a name you can trust, wherever your machines take you.
             </p>
           </div>
         </div>
@@ -99,17 +98,17 @@ const AboutPage: React.FC = () => {
             <div className="space-y-6">
               <h2 className="text-4xl font-bold text-slate-900">Our Story</h2>
               <p className="text-lg text-gray-600 leading-relaxed">
-                Founded in 2009, ASUS Spare Parts began as a small family business with a simple mission: 
+                Founded in 2009, ASUS Spare Parts began as a small family business with a simple mission:
                 to provide heavy machinery operators with reliable, high-quality spare parts at competitive prices.
               </p>
               <p className="text-gray-600 leading-relaxed">
-                What started in a modest warehouse has grown into a comprehensive operation serving customers 
-                across multiple continents. Our success is built on three pillars: uncompromising quality, 
+                What started in a modest warehouse has grown into a comprehensive operation serving customers
+                across multiple continents. Our success is built on three pillars: uncompromising quality,
                 exceptional customer service, and deep industry expertise.
               </p>
               <p className="text-gray-600 leading-relaxed">
-                Today, we maintain partnerships with leading manufacturers and continue to expand our inventory 
-                to meet the evolving needs of the heavy machinery industry. Every part we sell comes with our 
+                Today, we maintain partnerships with leading manufacturers and continue to expand our inventory
+                to meet the evolving needs of the heavy machinery industry. Every part we sell comes with our
                 commitment to quality and our promise of reliable performance.
               </p>
               <div className="space-y-3">
@@ -201,15 +200,15 @@ const AboutPage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl font-bold mb-8">Our Mission</h2>
           <p className="text-2xl text-orange-100 max-w-4xl mx-auto leading-relaxed mb-8">
-            "To be the most trusted partner in the heavy machinery industry by providing superior quality 
-            spare parts, exceptional customer service, and innovative solutions that keep our customers' 
+            "To be the most trusted partner in the heavy machinery industry by providing superior quality
+            spare parts, exceptional customer service, and innovative solutions that keep our customers'
             operations running smoothly and efficiently."
           </p>
           <div className="flex justify-center">
             <div className="bg-white/10 backdrop-blur-sm rounded-xl p-8 max-w-2xl">
               <p className="text-orange-100 leading-relaxed">
-                We believe that every customer deserves parts they can rely on and service they can trust. 
-                This commitment drives us to continuously improve our products, expand our capabilities, 
+                We believe that every customer deserves parts they can rely on and service they can trust.
+                This commitment drives us to continuously improve our products, expand our capabilities,
                 and exceed expectations in everything we do.
               </p>
             </div>
@@ -218,7 +217,7 @@ const AboutPage: React.FC = () => {
       </div>
 
       {/* Certifications */}
-      <div className="py-16 bg-gray-50">
+      {/* <div className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-slate-900 mb-4">Certifications & Partnerships</h2>
@@ -243,7 +242,7 @@ const AboutPage: React.FC = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
