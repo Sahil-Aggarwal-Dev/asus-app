@@ -21,7 +21,7 @@ const ContactInfo: React.FC = () => {
       icon: <MapPin size={24} />,
       title: 'Visit Our Facility',
       primary: 'Parnyab Enterprises Pvt. Ltd.',
-      secondary: '834/35, GALI NO. 1, WEST RAJIV NAGAR, GURUGRAM , HARYANA-122001, INDIA',
+      secondary: '834/35, West Rajiv Nagar, Sector-12, Gurugram, Haryana-122001, INDIA',
       description: 'Schedule a visit to our warehouse'
     }
   ];
