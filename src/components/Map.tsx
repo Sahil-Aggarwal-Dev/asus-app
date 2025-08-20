@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { MapPin, Phone, X } from 'lucide-react';
 
 const Map: React.FC = () => {
   const [showForm, setShowForm] = useState(false);
+  const [loading, setLoading] = useState(true); // loading state
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -23,6 +24,26 @@ const Map: React.FC = () => {
     setShowForm(false);
   };
 
+  // simulate loading for iframe
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 1500); // 1.5s delay for demo
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Loading animation
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center h-screen bg-white">
+        <img
+          decoding="async"
+          src="https://raw.githubusercontent.com/Sahil-Aggarwal-Dev/asus-assests/main/Asus_logo_1.png"
+          alt="Loading"
+          className="h-32 w-auto object-contain animate-fluctuate"
+        />
+      </div>
+    );
+  }
+
   return (
     <section className="py-16 bg-gray-50 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -37,7 +58,7 @@ const Map: React.FC = () => {
 
         <div className="grid lg:grid-cols-3 gap-8">
           {/* Google Map Embed with Pin */}
-          <div className="lg:col-span-2 h-[480px] rounded-2xl overflow-hidden shadow-lg">
+          <div className="lg:col-span-2 h-[505px] rounded-2xl overflow-hidden shadow-lg">
             <iframe
               title="Parnyab Enterprises Location"
               src="https://maps.google.com/maps?q=28.473843,77.031586&hl=en&z=16&output=embed"
@@ -60,7 +81,7 @@ const Map: React.FC = () => {
                     <p className="font-medium text-slate-900">Address</p>
                     <p className="text-gray-600">Parnyab Enterprises Pvt. Ltd.</p>
                     <p className="text-gray-600">
-                      834/35, GALI NO. 1, WEST RAJIV NAGAR, GURUGRAM, HARYANA-122001, INDIA
+                      834/35, West Rajiv Nagar, Sector-12, Gurugram, Haryana-122001, INDIA
                     </p>
                   </div>
                 </div>
@@ -69,7 +90,8 @@ const Map: React.FC = () => {
                   <Phone className="text-orange-600 mt-1 flex-shrink-0" size={20} />
                   <div>
                     <p className="font-medium text-slate-900">Phone</p>
-                    <p className="text-gray-600">+91 8298659245 / +91 8750108980</p>
+                    <p className="text-gray-600">+91-8298659245</p>
+                    <p className="text-gray-600">+91-8750108980</p>
                   </div>
                 </div>
               </div>
