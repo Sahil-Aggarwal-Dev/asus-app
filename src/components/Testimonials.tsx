@@ -1,40 +1,13 @@
 import React from 'react';
-import { Star, Quote } from 'lucide-react';
+import { Quote, Star } from 'lucide-react';
+import { testimonials } from '../data/testimonials';
 
 const Testimonials: React.FC = () => {
-  const testimonials = [
-    {
-      id: 1,
-      name: 'Robert Martinez',
-      company: 'Martinez Construction',
-      role: 'Fleet Manager',
-      image: 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=400',
-      rating: 5,
-      text: 'ASUS Spare Parts has been our go-to supplier for over 5 years. Their quality is unmatched and their customer service is exceptional. We never have to worry about downtime with their reliable parts.'
-    },
-    {
-      id: 2,
-      name: 'Jennifer Thompson',
-      company: 'Thompson Excavation',
-      role: 'Operations Director',
-      image: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=400',
-      rating: 5,
-      text: 'The technical expertise and product knowledge at ASUS is outstanding. They helped us identify the exact parts we needed and provided detailed installation guidance. Highly recommended!'
-    },
-    {
-      id: 3,
-      name: 'David Kim',
-      company: 'Kim Heavy Equipment',
-      role: 'Maintenance Supervisor',
-      image: 'https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=400',
-      rating: 5,
-      text: 'Fast shipping, competitive prices, and genuine OEM quality parts. ASUS has everything we need to keep our fleet running. Their hydraulic seal kits are particularly impressive.'
-    }
-  ];
+  const testimonies = testimonials;
 
   return (
-    <section className="py-20 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-4 bg-gray-50">
+      <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-6">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-slate-900 mb-4">What Our Customers Say</h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -43,7 +16,7 @@ const Testimonials: React.FC = () => {
         </div>
 
         <div className="grid md:grid-cols-3 gap-8">
-          {testimonials.map((testimonial) => (
+          {testimonies.map((testimonial) => (
             <div key={testimonial.id} className="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow">
               <div className="flex items-center mb-4">
                 <Quote className="text-orange-600 mr-2" size={24} />
@@ -53,11 +26,11 @@ const Testimonials: React.FC = () => {
                   ))}
                 </div>
               </div>
-              
+
               <p className="text-gray-600 leading-relaxed mb-6 italic">
                 "{testimonial.text}"
               </p>
-              
+
               <div className="flex items-center">
                 <img
                   src={testimonial.image}

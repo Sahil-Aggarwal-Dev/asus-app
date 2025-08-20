@@ -43,3 +43,13 @@ export interface Team {
   image: string;
   description: string;
 }
+
+export interface Testimonial {
+  id: number;
+  name: string;
+  company: string;
+  role: string;
+  image: string;
+  rating: number;
+  text: string;
+}

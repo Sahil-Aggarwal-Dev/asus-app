@@ -23,8 +23,7 @@ const Header: React.FC = () => {
           <div className="flex items-center space-x-6 font-medium">
             <div className="flex items-center space-x-1 hover:text-amber-400 transition-colors cursor-pointer">
               <Phone size={14} className="text-amber-400" />
-              <span>+91-8295659245</span>
-              <span>+91-8750108980</span>
+              <span>+91 8750108980</span>
             </div>
             <div className="flex items-center space-x-1 hover:text-amber-400 transition-colors cursor-pointer">
               <Mail size={14} className="text-amber-400" />
@@ -38,28 +37,28 @@ const Header: React.FC = () => {
       </div>
 
       {/* Unique Main Header */}
-      <div className="bg-gradient-to-r from-black via-amber-1000 to-amber-700 shadow-md">
+      <div className="bg-gradient-to-r from-black via-amber-900 to-amber-700 shadow-md">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-3">
+          <div className="flex justify-between items-center py-2 sm:py-3 lg:py-4">
             {/* Logo */}
-            <Link to="/" className="flex items-center space-x-3">
+            <Link to="/" className="flex items-center space-x-2 sm:space-x-3 lg:space-x-4">
               <img
                 src="https://raw.githubusercontent.com/Sahil-Aggarwal-Dev/asus-assests/main/Asus_logo_1.png"
                 alt="Asus Logo"
-                className="h-14 w-auto object-contain drop-shadow-lg hover:scale-105 transition-transform"
+                className="h-10 sm:h-12 lg:h-14 w-auto object-contain drop-shadow-lg hover:scale-105 transition-transform"
               />
               <div className="flex flex-col">
-                <div className="text-2xl font-bebas font-bold text-white tracking-wider drop-shadow-md">
+                <div className="text-lg sm:text-xl lg:text-2xl font-bebas font-bold text-white tracking-wide drop-shadow-md">
                   ASUS SPARE PARTS
                 </div>
-                <div className="text-amber-300 font-medium text-xs uppercase tracking-widest">
+                <div className="text-[9px] sm:text-xs lg:text-xs text-amber-300 font-medium uppercase tracking-widest">
                   Heavy Machinery Solutions
                 </div>
               </div>
             </Link>
 
             {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center space-x-8 text-gray-200 font-roboto font-medium text-sm">
+            <nav className="hidden md:flex items-center space-x-4 sm:space-x-6 lg:space-x-8 text-gray-200 font-roboto font-medium text-xs sm:text-sm lg:text-sm">
               {['Home', 'Products', 'About', 'Contact'].map((item) => (
                 <Link
                   key={item}
@@ -79,9 +78,9 @@ const Header: React.FC = () => {
                 placeholder="Search parts..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10 pr-4 py-1.5 rounded-full border-none focus:outline-none focus:ring-2 focus:ring-amber-400 text-gray-900 w-56 text-sm"
+                className="pl-10 pr-4 py-1 sm:py-1.5 rounded-full border-none focus:outline-none focus:ring-2 focus:ring-amber-400 text-gray-900 w-40 sm:w-48 lg:w-56 text-xs sm:text-sm"
               />
-              <Search className="absolute left-3 top-1.5 h-4 w-4 text-gray-500" />
+              <Search className="absolute left-3 top-1.5 sm:top-2 h-3.5 sm:h-4 w-3.5 sm:w-4 text-gray-500" />
             </form>
 
             {/* Mobile Menu Button */}
