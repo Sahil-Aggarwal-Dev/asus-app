@@ -1,5 +1,5 @@
+// src/components/ProductGrid.tsx
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { Eye, Filter } from 'lucide-react';
 import { Product } from '../types';
 import ImageScroller from './ImageScroller';
@@ -7,9 +7,10 @@ import ImageScroller from './ImageScroller';
 interface ProductGridProps {
   products: Product[];
   filters?: React.ReactNode;
+  onProductClick?: (id: string) => void; // optional callback for clicking a product
 }
 
-const ProductGrid: React.FC<ProductGridProps> = ({ products, filters }) => {
+const ProductGrid: React.FC<ProductGridProps> = ({ products, filters, onProductClick }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -22,6 +23,19 @@ const ProductGrid: React.FC<ProductGridProps> = ({ products, filters }) => {
     if (page < 1 || page > totalPages) return;
     setCurrentPage(page);
     window.scrollTo({ top: 0, behavior: 'instant' });
+  };
+
+  const getAvailabilityColor = (availability: string) => {
+    switch (availability) {
+      case 'In Stock':
+        return 'text-green-600';
+      case 'Low Stock':
+        return 'text-yellow-600';
+      case 'Out of Stock':
+        return 'text-red-600';
+      default:
+        return 'text-gray-600';
+    }
   };
 
   return (
@@ -42,15 +56,12 @@ const ProductGrid: React.FC<ProductGridProps> = ({ products, filters }) => {
       {/* Mobile Drawer Overlay */}
       {filters && (
         <>
-          {/* Overlay */}
           <div
             className={`fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity duration-300 ${
               mobileOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
             } lg:hidden`}
             onClick={() => setMobileOpen(false)}
           />
-
-          {/* Drawer */}
           <div
             className={`fixed top-0 left-0 h-full w-64 bg-white shadow-lg z-50 transform transition-transform duration-300 ease-in-out ${
               mobileOpen ? 'translate-x-0' : '-translate-x-full'
@@ -72,10 +83,9 @@ const ProductGrid: React.FC<ProductGridProps> = ({ products, filters }) => {
 
       {/* Product Grid */}
       <div className="flex-1">
-        {/* ✅ Always at least 2 products on mobile */}
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {currentProducts.map((product) => (
-            <ProductCard key={product.id} product={product} />
+          {currentProducts.map(product => (
+            <ProductCard key={product.id} product={product} onClick={onProductClick} />
           ))}
         </div>
 
@@ -116,44 +126,34 @@ const ProductGrid: React.FC<ProductGridProps> = ({ products, filters }) => {
 
 interface ProductCardProps {
   product: Product;
+  onClick?: (id: string) => void;
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
-  const getColor = (availability: string) => {
+const ProductCard: React.FC<ProductCardProps> = ({ product, onClick }) => {
+  const getAvailabilityColor = (availability: string) => {
     switch (availability) {
-      case 'In Stock':
-        return 'text-green-600';
-      case 'Low Stock':
-        return 'text-yellow-600';
-      case 'Out of Stock':
-        return 'text-red-600';
-      default:
-        return 'text-gray-600';
+      case 'In Stock': return 'text-green-600';
+      case 'Low Stock': return 'text-yellow-600';
+      case 'Out of Stock': return 'text-red-600';
+      default: return 'text-gray-600';
     }
   };
 
   const isOnSale = product.originalPrice && product.originalPrice > product.price;
 
   return (
-    <div className="bg-white shadow rounded-lg overflow-hidden relative hover:shadow-lg transition-shadow cursor-pointer text-sm flex flex-col">
-      
-      {/* ✅ Ensure full image without extra white space */}
+    <div
+      className="bg-white shadow rounded-lg overflow-hidden relative hover:shadow-lg transition-shadow cursor-pointer text-sm flex flex-col"
+      onClick={() => onClick?.(product.id)}
+    >
       <div className="w-full aspect-[4/3] relative">
-        <ImageScroller
-          images={product.images}
-          partNumber={product.partNumber}
-          isOnSale={!!isOnSale}
-          setTime={1500}
-        />
+        <ImageScroller images={product.images} partNumber={product.partNumber} isOnSale={!!isOnSale} setTime={1500} />
       </div>
 
       <div className="p-3 flex flex-col flex-1">
-        <Link
-          to={`/products/${product.id}`}
-          className="text-sm sm:text-base font-semibold text-gray-900 hover:text-orange-600 truncate"
-        >
+        <h3 className="text-sm sm:text-base font-semibold text-gray-900 hover:text-orange-600 truncate">
           {product.name}
-        </Link>
+        </h3>
 
         {product.partNumber && (
           <p className="text-xs sm:text-sm font-bold text-gray-800 mt-1 truncate">Part No: {product.partNumber}</p>
@@ -170,17 +170,17 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
               <span className="text-gray-500 line-through text-xs sm:text-sm">₹{product.originalPrice}</span>
             )}
           </div>
-          <span className={`text-xs sm:text-sm font-semibold ${getColor(product.availability)}`}>
+          <span className={`text-xs sm:text-sm font-semibold ${getAvailabilityColor(product.availability)}`}>
             {product.availability}
           </span>
         </div>
 
-        <Link
-          to={`/products/${product.id}`}
+        <button
           className="mt-2 inline-flex items-center justify-center w-full bg-orange-600 hover:bg-orange-700 text-white px-4 py-2 rounded-lg font-semibold gap-2 text-sm sm:text-base"
+          onClick={() => onClick?.(product.id)}
         >
           <Eye size={20} /> View
-        </Link>
+        </button>
       </div>
     </div>
   );
