@@ -18,7 +18,18 @@ function App() {
       <div className="min-h-screen bg-white">
         <Header />
         <main>
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense
+            fallback={
+              <div className="flex items-center justify-center h-[70vh]">
+                <img
+                  decoding="async"
+                  src="https://raw.githubusercontent.com/Sahil-Aggarwal-Dev/asus-assests/main/Asus_logo_1.png"
+                  alt="Backhoe Loader"
+                  className="h-16 w-auto object-contain animate-pulse"
+                />
+              </div>
+            }
+          >
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/products" element={<ProductsPage />} />
