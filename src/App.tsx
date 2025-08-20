@@ -20,12 +20,12 @@ function App() {
         <main>
           <Suspense
             fallback={
-              <div className="flex items-center justify-center h-[70vh]">
+              <div className="flex items-center justify-center h-screen bg-white">
                 <img
                   decoding="async"
                   src="https://raw.githubusercontent.com/Sahil-Aggarwal-Dev/asus-assests/main/Asus_logo_1.png"
                   alt="Backhoe Loader"
-                  className="h-16 w-auto object-contain animate-pulse"
+                  className="h-32 w-auto object-contain animate-fluctuate"
                 />
               </div>
             }
