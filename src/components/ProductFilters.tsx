@@ -87,7 +87,7 @@ const ProductFilters: React.FC<ProductFiltersProps> = ({
           <option value="name">Name (A-Z)</option>
           <option value="price-low">Price (Low to High)</option>
           <option value="price-high">Price (High to Low)</option>
-          <option value="newest">Newest First</option>
+          {/* <option value="newest">Newest First</option> */}
         </select>
       </div>
 
@@ -97,11 +97,10 @@ const ProductFilters: React.FC<ProductFiltersProps> = ({
         <div className="space-y-2">
           <button
             onClick={() => onCategoryChange(null)}
-            className={`w-full text-left px-3 py-2 rounded-lg transition-colors ${
-              !selectedCategory 
-                ? 'bg-orange-100 text-orange-800 font-medium' 
-                : 'text-gray-700 hover:bg-gray-100'
-            }`}
+            className={`w-full text-left px-3 py-2 rounded-lg transition-colors ${!selectedCategory
+              ? 'bg-orange-100 text-orange-800 font-medium'
+              : 'text-gray-700 hover:bg-gray-100'
+              }`}
           >
             All Categories
           </button>
@@ -109,11 +108,10 @@ const ProductFilters: React.FC<ProductFiltersProps> = ({
             <button
               key={category.id}
               onClick={() => onCategoryChange(category.id)}
-              className={`w-full text-left px-3 py-2 rounded-lg transition-colors ${
-                selectedCategory === category.id 
-                  ? 'bg-orange-100 text-orange-800 font-medium' 
-                  : 'text-gray-700 hover:bg-gray-100'
-              }`}
+              className={`w-full text-left px-3 py-2 rounded-lg transition-colors ${selectedCategory === category.id
+                ? 'bg-orange-100 text-orange-800 font-medium'
+                : 'text-gray-700 hover:bg-gray-100'
+                }`}
             >
               {category.name}
             </button>

@@ -20,15 +20,13 @@ import { products } from '../data/products';
 import { categories } from '../data/categories';
 
 const ProductsPage: React.FC = () => {
-  // Use query params for both list filters and product detail
   const [searchParams, setSearchParams] = useSearchParams();
 
-  // === List-related params (read from query if desired) ===
   const categoryFromUrl = searchParams.get('category');
-  const searchFromUrl = searchParams.get('search') || '';
 
+  // === State ===
   const [selectedCategory, setSelectedCategory] = useState<string | null>(categoryFromUrl);
-  const [searchQuery, setSearchQuery] = useState(searchFromUrl);
+  const [searchQuery, setSearchQuery] = useState('');
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 1000]);
   const [availability, setAvailability] = useState<string[]>([]);
   const [sortBy, setSortBy] = useState<string>('name');
@@ -42,7 +40,14 @@ const ProductsPage: React.FC = () => {
     document.body.style.overflow = mobileOpen ? 'hidden' : '';
   }, [mobileOpen]);
 
-  // === Helper: open / close product detail via query param ===
+  // === Sync searchQuery with URL ===
+  useEffect(() => {
+    const query = searchParams.get('search') || '';
+    setSearchQuery(query);
+    setCurrentPage(1);
+  }, [searchParams]);
+
+  // === Product detail open/close ===
   const openProduct = (productId: string) => {
     const params = new URLSearchParams(searchParams.toString());
     params.set('id', productId);
@@ -56,7 +61,6 @@ const ProductsPage: React.FC = () => {
     setSearchParams(params);
   };
 
-  // === Which product id in query? ===
   const productIdFromQuery = searchParams.get('id');
 
   // === Filtering logic ===
@@ -101,12 +105,10 @@ const ProductsPage: React.FC = () => {
   const startItem = totalProducts === 0 ? 0 : (currentPage - 1) * itemsPerPage + 1;
   const endItem = Math.min(currentPage * itemsPerPage, totalProducts);
 
-  // === Product detail (when id is present) ===
   const product = productIdFromQuery ? products.find(p => p.id === productIdFromQuery) : undefined;
   const [selectedImage, setSelectedImage] = useState(0);
   const [showInquiryForm, setShowInquiryForm] = useState(false);
 
-  // reset selected image if product changes
   useEffect(() => {
     setSelectedImage(0);
   }, [product?.id]);
@@ -120,7 +122,7 @@ const ProductsPage: React.FC = () => {
     }
   };
 
-  // ---- If no id in query -> show product list page ----
+  // ---- Product list page ----
   if (!productIdFromQuery) {
     return (
       <div className="min-h-screen bg-gray-50 relative">
@@ -132,7 +134,12 @@ const ProductsPage: React.FC = () => {
               selectedCategory={selectedCategory}
               onCategoryChange={setSelectedCategory}
               searchQuery={searchQuery}
-              onSearchChange={setSearchQuery}
+              onSearchChange={(q) => {
+                setSearchQuery(q);
+                const params = new URLSearchParams(searchParams.toString());
+                params.set('search', q);
+                setSearchParams(params);
+              }}
               priceRange={priceRange}
               onPriceRangeChange={setPriceRange}
               availability={availability}
@@ -163,10 +170,8 @@ const ProductsPage: React.FC = () => {
               </div>
             </div>
 
-            {/* ProductGrid: pass optional onProductClick so child can use it */}
+            {/* ProductGrid */}
             <div className="w-full">
-              {/* If your ProductGrid supports an onProductClick prop, it can call openProduct(id).
-                  If not, keep ProductGrid as-is and wire its internal links to '?id=...' instead. */}
               <ProductGrid products={paginatedProducts} onProductClick={openProduct as any} />
             </div>
 
@@ -185,11 +190,10 @@ const ProductsPage: React.FC = () => {
                   <button
                     key={idx + 1}
                     onClick={() => setCurrentPage(idx + 1)}
-                    className={`px-3 py-1 rounded-md border ${
-                      currentPage === idx + 1
-                        ? 'bg-orange-600 text-white'
-                        : 'bg-white text-gray-700 hover:bg-gray-100'
-                    }`}
+                    className={`px-3 py-1 rounded-md border ${currentPage === idx + 1
+                      ? 'bg-orange-600 text-white'
+                      : 'bg-white text-gray-700 hover:bg-gray-100'
+                      }`}
                   >
                     {idx + 1}
                   </button>
@@ -226,7 +230,12 @@ const ProductsPage: React.FC = () => {
                     selectedCategory={selectedCategory}
                     onCategoryChange={setSelectedCategory}
                     searchQuery={searchQuery}
-                    onSearchChange={setSearchQuery}
+                    onSearchChange={(q) => {
+                      setSearchQuery(q);
+                      const params = new URLSearchParams(searchParams.toString());
+                      params.set('search', q);
+                      setSearchParams(params);
+                    }}
                     priceRange={priceRange}
                     onPriceRangeChange={setPriceRange}
                     availability={availability}
@@ -243,7 +252,7 @@ const ProductsPage: React.FC = () => {
     );
   }
 
-  // ---- If id exists but product not found ----
+  // ---- Product detail (existing code unchanged) ----
   if (productIdFromQuery && !product) {
     return (
       <div className="min-h-screen flex items-center justify-center px-4">
@@ -259,6 +268,7 @@ const ProductsPage: React.FC = () => {
       </div>
     );
   }
+
 
   // ---- Render product detail (product guaranteed) ----
   return (
@@ -459,7 +469,6 @@ const ProductsPage: React.FC = () => {
         {/* Related Products */}
         <RelatedProducts
           category={product!.category}
-          currentProductId={Number(product!.id)}
         />
       </div>
 

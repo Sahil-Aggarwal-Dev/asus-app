@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { Eye, ChevronLeft, ChevronRight } from 'lucide-react';
 import { products } from '../data/products';
 import ImageScroller from './ImageScroller';
@@ -41,14 +41,12 @@ const FeaturedProducts: React.FC = () => {
         {/* Subtle pattern overlay */}
         <div className="absolute inset-0 bg-[url('https://www.toptal.com/designers/subtlepatterns/uploads/dot-grid.png')] opacity-10"></div>
 
-        {/* Hide scrollbar for all browsers */}
         <style>{`
-                    .scroll-container::-webkit-scrollbar { display: none; }
-                    .scroll-container { -ms-overflow-style: none; scrollbar-width: none; }
-                `}</style>
+          .scroll-container::-webkit-scrollbar { display: none; }
+          .scroll-container { -ms-overflow-style: none; scrollbar-width: none; }
+        `}</style>
 
         <div className="relative w-full mx-auto px-6">
-          {/* Section heading */}
           <div className="text-center mb-8 relative z-10 mt-4">
             <h2 className="text-3xl font-extrabold text-white mb-2 tracking-tight">
               Featured Products
@@ -57,7 +55,6 @@ const FeaturedProducts: React.FC = () => {
           </div>
 
           <div className="relative z-10 pb-6">
-            {/* Left Arrow */}
             {canScroll && (
               <button
                 onClick={() => scroll('left')}
@@ -67,7 +64,6 @@ const FeaturedProducts: React.FC = () => {
               </button>
             )}
 
-            {/* Scrollable Product Container */}
             <div
               ref={scrollRef}
               className="flex space-x-6 overflow-x-auto scroll-smooth pt-2 scroll-container"
@@ -87,12 +83,11 @@ const FeaturedProducts: React.FC = () => {
                       setTime={1500}
                     />
 
-                    {/* Divider between image and details */}
                     <div className="border-t border-gray-200"></div>
 
                     <div className="p-4 flex flex-col flex-1">
                       <Link
-                        to={`/products/${product.id}`}
+                        to={`/products?id=${product.id}`}
                         className="text-sm sm:text-base font-semibold text-gray-900 hover:text-orange-600 truncate"
                       >
                         {product.name}
@@ -132,7 +127,7 @@ const FeaturedProducts: React.FC = () => {
                       </div>
 
                       <Link
-                        to={`/products/${product.id}`}
+                        to={`/products?id=${product.id}`}
                         className="mt-3 inline-flex items-center justify-center w-full bg-orange-600 hover:bg-orange-700 text-white px-4 py-2 rounded-2xl font-semibold gap-2 text-sm shadow-sm transition"
                       >
                         <Eye size={20} /> View
@@ -143,7 +138,6 @@ const FeaturedProducts: React.FC = () => {
               })}
             </div>
 
-            {/* Right Arrow */}
             {canScroll && (
               <button
                 onClick={() => scroll('right')}
