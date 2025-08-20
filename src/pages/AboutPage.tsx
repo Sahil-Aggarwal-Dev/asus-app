@@ -1,5 +1,7 @@
 import React from 'react';
 import { Shield, Award, Users, Clock, CheckCircle, Target, Heart, Zap } from 'lucide-react';
+import TeamScroller from '../components/TeamScroller';
+import { team } from '../data/team';
 
 const AboutPage: React.FC = () => {
   const stats = [
@@ -32,42 +34,44 @@ const AboutPage: React.FC = () => {
     }
   ];
 
-  const team = [
-    {
-      name: 'John Smith',
-      role: 'CEO & Founder',
-      image: 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=400',
-      description: '20+ years in heavy machinery industry'
-    },
-    {
-      name: 'Sarah Johnson',
-      role: 'Technical Director',
-      image: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=400',
-      description: 'Expert in hydraulic systems and engineering'
-    },
-    {
-      name: 'Mike Chen',
-      role: 'Operations Manager',
-      image: 'https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=400',
-      description: 'Logistics and supply chain specialist'
-    },
-    {
-      name: 'Lisa Rodriguez',
-      role: 'Customer Success Manager',
-      image: 'https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=400',
-      description: 'Dedicated to exceptional customer experience'
-    }
-  ];
-
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <div className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h1 className="text-5xl font-bold mb-6">About ASUS Spare Parts</h1>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              Asus is a next-generation brand committed to delivering high-performance spare parts for backhoe loaders with a global standard of quality and reliability. Born from deep industry experience and a passion for engineering excellence, Asus aims to support the construction and heavy equipment sector with parts that offer superior durability, precision fitment, and exceptional value. Our vision is not limited to one region — we aspire to serve customers worldwide, from the heart of bustling cities to the most rugged terrains where machines work the hardest. Every product that carries the Asus name reflects our promise of Power. Precision. Performance. Whether you're a dealer, contractor, rental house, or machine owner, Asus is here to power your machines, minimize downtime, and help your business move forward with confidence. With a focus on innovation, customer satisfaction, and expanding global reach, Asus is more than just parts — it's a name you can trust, wherever your machines take you.
+      <div className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white py-16 md:py-20">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-4">
+          <div className="text-center space-y-6">
+            <h1 className="text-4xl md:text-5xl font-bold mb-2">
+              About ASUS Spare Parts
+            </h1>
+
+            <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
+              Asus is a <span className="font-semibold">next-generation brand</span> committed to delivering <span className="font-semibold">high-performance spare parts</span> for backhoe loaders, built to meet a <span className="font-semibold">global standard of quality and reliability</span>.
+            </p>
+
+            <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
+              With <span className="font-semibold">decades of industry experience</span> and a passion for engineering excellence, Asus provides parts that ensure <span className="font-semibold">superior durability</span>, <span className="font-semibold">precise fitment</span>, and <span className="font-semibold">exceptional value</span> for every machine.
+            </p>
+
+            <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
+              Our vision extends far beyond one region — we strive to serve customers <span className="font-semibold">worldwide</span>, from bustling urban construction sites to the <span className="font-semibold">most rugged terrains</span> where heavy machinery works the hardest.
+            </p>
+
+            <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
+              Every product that carries the <span className="font-semibold">Asus name</span> reflects our promise of:
+            </p>
+
+            <ul className="text-lg md:text-xl text-gray-300 leading-relaxed list-disc list-inside space-y-1">
+              <li><span className="font-semibold">Power</span> – ensuring your machines perform at their peak</li>
+              <li><span className="font-semibold">Precision</span> – perfect fitment for optimal efficiency</li>
+              <li><span className="font-semibold">Performance</span> – reliability that minimizes downtime</li>
+            </ul>
+
+            <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
+              Whether you are a <span className="font-semibold">dealer, contractor, rental house, or machine owner</span>, Asus is here to <span className="font-semibold">power your machines</span>, <span className="font-semibold">maximize productivity</span>, and <span className="font-semibold">support your business growth</span>.
+            </p>
+
+            <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
+              With a focus on <span className="font-semibold">innovation, customer satisfaction, and global reach</span>, Asus is more than just spare parts — it’s a <span className="font-semibold">trusted name wherever your machines take you</span>.
             </p>
           </div>
         </div>
@@ -92,25 +96,26 @@ const AboutPage: React.FC = () => {
       </div>
 
       {/* Story Section */}
-      <div className="py-20">
+      <div className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
+
+            {/* Story Text */}
             <div className="space-y-6">
               <h2 className="text-4xl font-bold text-slate-900">Our Story</h2>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                Founded in 2009, ASUS Spare Parts began as a small family business with a simple mission:
-                to provide heavy machinery operators with reliable, high-quality spare parts at competitive prices.
+
+              <p className="text-lg text-gray-700 leading-relaxed">
+                ASUS Spare Parts is a proud brand under <span className="font-semibold">Parnyab Enterprises Pvt Ltd</span>, dedicated to providing high-quality spare parts for backhoe loaders and heavy machinery. Our journey began with a vision to deliver reliable, durable, and cost-effective solutions to the construction and industrial sectors.
               </p>
-              <p className="text-gray-600 leading-relaxed">
-                What started in a modest warehouse has grown into a comprehensive operation serving customers
-                across multiple continents. Our success is built on three pillars: uncompromising quality,
-                exceptional customer service, and deep industry expertise.
+
+              <p className="text-gray-700 leading-relaxed">
+                Since our inception, we have grown from a small family-run operation into a trusted supplier with a global reach. Our success is built on a foundation of <span className="font-semibold">uncompromising quality, deep industry knowledge, and exceptional customer service</span>.
               </p>
-              <p className="text-gray-600 leading-relaxed">
-                Today, we maintain partnerships with leading manufacturers and continue to expand our inventory
-                to meet the evolving needs of the heavy machinery industry. Every part we sell comes with our
-                commitment to quality and our promise of reliable performance.
+
+              <p className="text-gray-700 leading-relaxed">
+                Today, we maintain strong partnerships with leading manufacturers and continue to expand our inventory to meet the evolving needs of the heavy machinery industry. Every part we provide carries our promise of reliability, precision, and performance.
               </p>
+
               <div className="space-y-3">
                 <div className="flex items-center space-x-3">
                   <CheckCircle className="text-green-600 flex-shrink-0" size={20} />
@@ -126,16 +131,17 @@ const AboutPage: React.FC = () => {
                 </div>
               </div>
             </div>
+
+            {/* Story Image */}
             <div className="relative">
               <img
                 src="https://images.pexels.com/photos/1108101/pexels-photo-1108101.jpeg?auto=compress&cs=tinysrgb&w=800"
                 alt="ASUS warehouse facility"
                 className="w-full h-96 object-cover rounded-2xl shadow-xl"
               />
-              <div className="absolute -bottom-6 -left-6 bg-orange-600 text-white p-6 rounded-xl shadow-lg">
-                <div className="text-3xl font-bold">15+</div>
-                <div className="text-sm">Years of</div>
-                <div className="text-sm">Excellence</div>
+              <div className="absolute -bottom-6 -left-6 bg-orange-600 text-white p-6 rounded-xl shadow-lg text-center">
+                <div className="text-sm font-semibold">Years of</div>
+                <div className="text-sm font-semibold">Excellence</div>
               </div>
             </div>
           </div>
@@ -166,31 +172,22 @@ const AboutPage: React.FC = () => {
       </div>
 
       {/* Team Section */}
-      <div className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-slate-900 mb-4">Meet Our Team</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              The experienced professionals behind ASUS Spare Parts, dedicated to your success.
-            </p>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {team.map((member, index) => (
-              <div key={index} className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-                <div className="aspect-square overflow-hidden">
-                  <img
-                    src={member.image}
-                    alt={member.name}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="p-6 text-center">
-                  <h3 className="text-xl font-bold text-slate-900 mb-1">{member.name}</h3>
-                  <p className="text-orange-600 font-semibold mb-3">{member.role}</p>
-                  <p className="text-gray-600 text-sm">{member.description}</p>
-                </div>
-              </div>
-            ))}
+      <div className="py-4 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-6">
+          <div className="relative rounded-3xl overflow-hidden bg-gradient-to-r from-orange-500 via-pink-600 to-purple-700 pb-4 px-2 sm:px-4 lg:px-4">
+            {/* Subtle pattern overlay */}
+            <div className="absolute inset-0 bg-[url('https://www.toptal.com/designers/subtlepatterns/uploads/dot-grid.png')] opacity-10"></div>
+
+            {/* Section heading */}
+            <div className="text-center mb-6 relative z-10 mt-4">
+              <h2 className="text-4xl sm:text-5xl font-bold text-white mb-2 tracking-tight">Meet Our Team</h2>
+              <p className="text-gray-200 text-lg max-w-3xl mx-auto">
+                The experienced professionals behind ASUS Spare Parts, dedicated to your success.
+              </p>
+            </div>
+
+            {/* Scrollable Team Container */}
+            <TeamScroller team={team} />
           </div>
         </div>
       </div>

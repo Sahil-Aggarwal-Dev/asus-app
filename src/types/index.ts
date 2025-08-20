@@ -8,7 +8,7 @@ export interface Product {
   images: string[];
   description: string;
   detailedDescription: string;
-  availability: 'In Stock' | 'Low Stock' | 'Out of Stock';
+  availability: "In Stock" | "Low Stock" | "Out of Stock";
   specifications: Record<string, string>;
   compatibility?: string[];
   warranty?: string;
@@ -35,4 +35,11 @@ export interface ContactFormData {
   message: string;
   inquiryType: string;
   urgency: string;
+}
+
+export interface Team {
+  name: string;
+  role: string;
+  image: string;
+  description: string;
 }
