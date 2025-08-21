@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Send, User, MessageSquare } from 'lucide-react';
+import { Mail, Phone, Send, User, MessageSquare } from 'lucide-react';
 
 interface ContactFormProps {
   productName?: string;
@@ -11,15 +11,15 @@ const ContactForm: React.FC<ContactFormProps> = ({ productName, partNumber }) =>
     name: '',
     email: '',
     phone: '',
-    company: '',
-    partNumber: partNumber || '',
-    message: '',
-    inquiryType: 'general'
+    companyName: '',
+    message: ''
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
@@ -29,21 +29,36 @@ const ContactForm: React.FC<ContactFormProps> = ({ productName, partNumber }) =>
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    alert('Thank you for your inquiry! We will get back to you soon.');
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      company: '',
-      partNumber: partNumber || '',
-      message: '',
-      inquiryType: 'general'
-    });
-    setIsSubmitting(false);
+
+    try {
+      const response = await fetch('https://mailservice.run.place/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
+
+      if (!response.ok) {
+        throw new Error(`Error: ${response.statusText}`);
+      }
+
+      const data = await response.json();
+      alert(data.message || '✅ Thank you for submitting the form. We will get back to you soon!');
+
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        companyName: '',
+        message: ''
+      });
+    } catch (error) {
+      console.error('Submission failed:', error);
+      alert('❌ Something went wrong. Please try again later.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -53,6 +68,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ productName, partNumber }) =>
         <h3 className="text-2xl font-bold text-slate-900">Send us a message</h3>
       </div>
 
+      {/* Name + Email */}
       <div className="grid sm:grid-cols-2 gap-4">
         <div>
           <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
@@ -93,6 +109,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ productName, partNumber }) =>
         </div>
       </div>
 
+      {/* Phone + Company */}
       <div className="grid sm:grid-cols-2 gap-4">
         <div>
           <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
@@ -107,7 +124,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ productName, partNumber }) =>
               value={formData.phone}
               onChange={handleChange}
               className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
-              placeholder="(555) 123-4567"
+              placeholder="+91 1111111111"
             />
           </div>
         </div>
@@ -119,8 +136,8 @@ const ContactForm: React.FC<ContactFormProps> = ({ productName, partNumber }) =>
           <input
             type="text"
             id="company"
-            name="company"
-            value={formData.company}
+            name="companyName"
+            value={formData.companyName}
             onChange={handleChange}
             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
             placeholder="Your company"
@@ -128,41 +145,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ productName, partNumber }) =>
         </div>
       </div>
 
-      <div className="grid sm:grid-cols-2 gap-4">
-        <div>
-          <label htmlFor="inquiryType" className="block text-sm font-medium text-gray-700 mb-2">
-            Inquiry Type
-          </label>
-          <select
-            id="inquiryType"
-            name="inquiryType"
-            value={formData.inquiryType}
-            onChange={handleChange}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
-          >
-            <option value="general">General Inquiry</option>
-            <option value="parts">Parts Request</option>
-            <option value="support">Technical Support</option>
-            <option value="quote">Quote Request</option>
-          </select>
-        </div>
-
-        <div>
-          <label htmlFor="partNumber" className="block text-sm font-medium text-gray-700 mb-2">
-            Part Number (if known)
-          </label>
-          <input
-            type="text"
-            id="partNumber"
-            name="partNumber"
-            value={formData.partNumber}
-            onChange={handleChange}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
-            placeholder="ASU-XXX-XXX"
-          />
-        </div>
-      </div>
-
+      {/* Message */}
       <div>
         <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
           Message *
@@ -175,10 +158,15 @@ const ContactForm: React.FC<ContactFormProps> = ({ productName, partNumber }) =>
           value={formData.message}
           onChange={handleChange}
           className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent resize-none"
-          placeholder={productName ? `I'm interested in ${productName} (${partNumber}). Please provide more information.` : "Please describe your needs or questions..."}
+          placeholder={
+            productName
+              ? `I'm interested in ${productName} (${partNumber}). Please provide more information.`
+              : 'Please describe your needs or questions...'
+          }
         />
       </div>
 
+      {/* Submit */}
       <button
         type="submit"
         disabled={isSubmitting}
