@@ -34,11 +34,11 @@ export const products: Product[] = [
   {
     id: '2',
     name: 'Complete Wiring Harness Kit',
-    partNumber: 'ASU-WH-002',
+    partNumber: 'ASEL-3002',
     category: '1',
     price: 159.99,
     images: [
-      'https://images.pexels.com/photos/162568/backhoe-machine-excavator-digging-162568.jpeg?auto=compress&cs=tinysrgb&w=800'
+      'https://raw.githubusercontent.com/Sahil-Aggarwal-Dev/asus-assests/main/asel3002.png'
     ],
     description: 'Complete wiring harness for electrical systems with premium connectors',
     detailedDescription: 'Comprehensive wiring harness kit including all necessary connectors, terminals, and protective sheathing. Manufactured to OEM specifications with high-grade copper conductors.',
@@ -58,12 +58,12 @@ export const products: Product[] = [
   {
     id: '3',
     name: 'Heavy Duty Alternator 12V/24V',
-    partNumber: 'ASU-ALT-003',
+    partNumber: 'ASEL-3003',
     category: '1',
     price: 299.99,
     originalPrice: 349.99,
     images: [
-      'https://images.pexels.com/photos/257970/pexels-photo-257970.jpeg?auto=compress&cs=tinysrgb&w=800'
+      'https://raw.githubusercontent.com/Sahil-Aggarwal-Dev/asus-assests/main/asel3003.png'
     ],
     description: 'High-output alternator for reliable charging system performance',
     detailedDescription: 'Premium alternator designed for heavy-duty applications. Features enhanced cooling, robust construction, and superior electrical output for demanding work environments.',
@@ -85,11 +85,11 @@ export const products: Product[] = [
   {
     id: '4',
     name: 'Hydraulic Cylinder Seal Kit - Complete',
-    partNumber: 'ASU-HSK-001',
+    partNumber: 'ASEL-3004',
     category: '2',
     price: 79.99,
     images: [
-      'https://images.pexels.com/photos/159298/gears-cogs-machine-machinery-159298.jpeg?auto=compress&cs=tinysrgb&w=800'
+      'https://raw.githubusercontent.com/Sahil-Aggarwal-Dev/asus-assests/main/asel3004.png'
     ],
     description: 'Complete seal kit for hydraulic cylinders with premium materials',
     detailedDescription: 'Professional-grade hydraulic seal kit containing all necessary seals, O-rings, and gaskets for complete cylinder rebuild. Made from high-quality polyurethane and NBR materials.',
@@ -109,11 +109,11 @@ export const products: Product[] = [
   {
     id: '5',
     name: 'Boom Cylinder Seal Set',
-    partNumber: 'ASU-BCS-002',
+    partNumber: 'ASEL-3005',
     category: '2',
     price: 129.99,
-    images: [
-      'https://images.pexels.com/photos/159298/gears-cogs-machine-machinery-159298.jpeg?auto=compress&cs=tinysrgb&w=800'
+    images: [      
+	'https://raw.githubusercontent.com/Sahil-Aggarwal-Dev/asus-assests/main/asel3005.png'
     ],
     description: 'Specialized seals for boom cylinders with extended durability',
     detailedDescription: 'High-performance seal set specifically designed for boom cylinder applications. Features enhanced wear resistance and superior sealing performance under extreme conditions.',
