@@ -100,7 +100,7 @@ const Footer: React.FC = () => {
 
             {/* Copyright */}
             <div className="text-gray-400 text-sm text-center sm:text-left">
-              © 2025 ASUS Spare Parts. All rights reserved.
+              © 2025 Parnyab Enterprises Pvt Ltd. All rights reserved.
             </div>
 
             {/* Designer Credit */}
