@@ -25,19 +25,6 @@ const ProductGrid: React.FC<ProductGridProps> = ({ products, filters, onProductC
     window.scrollTo({ top: 0, behavior: 'instant' });
   };
 
-  const getAvailabilityColor = (availability: string) => {
-    switch (availability) {
-      case 'In Stock':
-        return 'text-green-600';
-      case 'Low Stock':
-        return 'text-yellow-600';
-      case 'Out of Stock':
-        return 'text-red-600';
-      default:
-        return 'text-gray-600';
-    }
-  };
-
   return (
     <div className="max-w-[1400px] mx-auto px-2 sm:px-4 flex flex-col lg:flex-row gap-4 relative">
 
@@ -57,15 +44,13 @@ const ProductGrid: React.FC<ProductGridProps> = ({ products, filters, onProductC
       {filters && (
         <>
           <div
-            className={`fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity duration-300 ${
-              mobileOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
-            } lg:hidden`}
+            className={`fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity duration-300 ${mobileOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
+              } lg:hidden`}
             onClick={() => setMobileOpen(false)}
           />
           <div
-            className={`fixed top-0 left-0 h-full w-64 bg-white shadow-lg z-50 transform transition-transform duration-300 ease-in-out ${
-              mobileOpen ? 'translate-x-0' : '-translate-x-full'
-            } lg:hidden`}
+            className={`fixed top-0 left-0 h-full w-64 bg-white shadow-lg z-50 transform transition-transform duration-300 ease-in-out ${mobileOpen ? 'translate-x-0' : '-translate-x-full'
+              } lg:hidden`}
           >
             <div className="p-4 flex justify-between items-center border-b">
               <h2 className="text-lg font-bold">Filters</h2>
@@ -103,9 +88,8 @@ const ProductGrid: React.FC<ProductGridProps> = ({ products, filters, onProductC
               <button
                 key={i + 1}
                 onClick={() => goToPage(i + 1)}
-                className={`px-3 py-1 rounded ${
-                  currentPage === i + 1 ? 'bg-orange-600 text-white' : 'bg-gray-200'
-                }`}
+                className={`px-3 py-1 rounded ${currentPage === i + 1 ? 'bg-orange-600 text-white' : 'bg-gray-200'
+                  }`}
               >
                 {i + 1}
               </button>

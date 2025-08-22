@@ -113,7 +113,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ productName, partNumber }) =>
       <div className="grid sm:grid-cols-2 gap-4">
         <div>
           <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
-            Phone Number
+            Phone Number *
           </label>
           <div className="relative">
             <Phone className="absolute left-3 top-3 text-gray-400" size={18} />
@@ -124,14 +124,14 @@ const ContactForm: React.FC<ContactFormProps> = ({ productName, partNumber }) =>
               value={formData.phone}
               onChange={handleChange}
               className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
-              placeholder="+91 1111111111"
+              placeholder="your number with country code"
             />
           </div>
         </div>
 
         <div>
           <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-2">
-            Company
+            Company Name *
           </label>
           <input
             type="text"

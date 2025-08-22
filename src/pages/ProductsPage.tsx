@@ -107,7 +107,6 @@ const ProductsPage: React.FC = () => {
 
   const product = productIdFromQuery ? products.find(p => p.id === productIdFromQuery) : undefined;
   const [selectedImage, setSelectedImage] = useState(0);
-  const [showInquiryForm, setShowInquiryForm] = useState(false);
 
   useEffect(() => {
     setSelectedImage(0);
@@ -395,12 +394,11 @@ const ProductsPage: React.FC = () => {
               )}
 
               <div className="flex flex-col sm:flex-row gap-3">
-                <button
-                  onClick={() => setShowInquiryForm(true)}
-                  className="flex-1 bg-orange-600 hover:bg-orange-700 text-white px-4 py-2 sm:px-6 sm:py-3 rounded-lg font-semibold flex items-center justify-center space-x-2 transition-colors text-sm sm:text-base"
-                >
-                  <FileText size={18} />
-                  <span>Request Quote</span>
+                <button className="flex-1 bg-orange-600 hover:bg-orange-700 text-white px-4 py-2 sm:px-6 sm:py-3 rounded-lg font-semibold flex items-center justify-center space-x-2 transition-colors text-sm sm:text-base">
+                  <Link to="/contact" className="flex items-center justify-center space-x-2 w-full h-full">
+                    <FileText size={18} />
+                    <span>Request Quote</span>
+                  </Link>
                 </button>
 
                 <button
@@ -471,50 +469,6 @@ const ProductsPage: React.FC = () => {
           category={product!.category}
         />
       </div>
-
-      {/* Inquiry Modal */}
-      {showInquiryForm && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-3 sm:p-4 z-50">
-          <div className="bg-white rounded-2xl p-4 sm:p-8 max-w-sm sm:max-w-md w-full">
-            <h3 className="text-lg sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Quick Inquiry</h3>
-            <form className="space-y-3 sm:space-y-4 text-sm sm:text-base" onSubmit={(e) => { e.preventDefault(); /* wire up submission */ }}>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
-                <input type="text" className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent" placeholder="Sahil Aggarwal" />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                <input type="email" className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent" placeholder="abc@gmail.com" />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Phone</label>
-                <input type="tel" className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent" placeholder="+91 1111111111" />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Company Name</label>
-                <input type="text" className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent" placeholder="Abc Enterprises" />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Message</label>
-                <textarea
-                  rows={3}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
-                  defaultValue={`I'm interested in ${product!.name} (${product!.partNumber}). Please provide more information.`}
-                />
-              </div>
-
-              <div className="flex flex-col sm:flex-row gap-3">
-                <button type="button" onClick={() => setShowInquiryForm(false)} className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors">
-                  Cancel
-                </button>
-                <button type="submit" className="flex-1 px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors">
-                  Send Inquiry
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      )}
 
       {/* Contact CTA */}
       <div className="bg-orange-600 text-white py-2 sm:py-4">

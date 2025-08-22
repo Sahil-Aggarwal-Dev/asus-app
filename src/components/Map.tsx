@@ -1,28 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { MapPin, Phone, X } from 'lucide-react';
+import { MapPin, Phone } from 'lucide-react';
 
 const Map: React.FC = () => {
-  const [showForm, setShowForm] = useState(false);
   const [loading, setLoading] = useState(true); // loading state
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    date: '',
-    time: '',
-  });
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log('Scheduled Visit Details:', formData);
-    alert('Thank you! Your visit request has been submitted.');
-    setFormData({ name: '', email: '', phone: '', date: '', time: '' });
-    setShowForm(false);
-  };
 
   // simulate loading for iframe
   useEffect(() => {
@@ -97,90 +77,22 @@ const Map: React.FC = () => {
               </div>
             </div>
 
-            {/* Schedule Visit Button */}
-            <div className="bg-orange-50 p-6 rounded-xl border border-orange-200">
-              <h3 className="text-lg font-semibold text-slate-900 mb-3">Schedule a Visit</h3>
+            {/* Static Call-to-Action */}
+            <div className="bg-orange-50 p-6 rounded-xl border border-orange-200 text-center">
+              <h3 className="text-lg font-semibold text-slate-900 mb-3">Get in Touch</h3>
               <p className="text-gray-600 mb-4">
-                Want to see our facility and inventory in person? Schedule a visit with our team.
+                Have questions or need assistance? Reach out to our team, and we'll be happy to help.
               </p>
-              <button
-                onClick={() => setShowForm(true)}
-                className="w-full bg-orange-600 hover:bg-orange-700 text-white py-3 rounded-lg font-semibold transition-colors"
+              <a
+                href="/contact"
+                className="inline-block bg-orange-600 hover:bg-orange-700 text-white py-3 px-6 rounded-lg font-semibold transition-colors"
               >
-                Schedule Visit
-              </button>
+                Contact Us
+              </a>
             </div>
           </div>
         </div>
       </div>
-
-      {/* Modal Form */}
-      {showForm && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-xl shadow-xl max-w-md w-full p-6 relative">
-            <button
-              onClick={() => setShowForm(false)}
-              className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
-            >
-              <X size={24} />
-            </button>
-            <h3 className="text-xl font-bold text-slate-900 mb-4">Schedule Your Visit</h3>
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <input
-                type="text"
-                name="name"
-                placeholder="Your Name"
-                value={formData.name}
-                onChange={handleChange}
-                required
-                className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500"
-              />
-              <input
-                type="email"
-                name="email"
-                placeholder="Email Address"
-                value={formData.email}
-                onChange={handleChange}
-                required
-                className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500"
-              />
-              <input
-                type="tel"
-                name="phone"
-                placeholder="Phone Number"
-                value={formData.phone}
-                onChange={handleChange}
-                required
-                className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500"
-              />
-              <input
-                type="date"
-                name="date"
-                value={formData.date}
-                onChange={handleChange}
-                required
-                className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500"
-              />
-              <input
-                type="time"
-                name="time"
-                value={formData.time}
-                onChange={handleChange}
-                required
-                min="11:00"
-                max="18:00"
-                className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500"
-              />
-              <button
-                type="submit"
-                className="w-full bg-orange-600 hover:bg-orange-700 text-white py-3 rounded-lg font-semibold transition-colors"
-              >
-                Submit
-              </button>
-            </form>
-          </div>
-        </div>
-      )}
     </section>
   );
 };
